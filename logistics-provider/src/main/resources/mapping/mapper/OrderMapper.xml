@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Order" >
+    <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="shipper" property="shipper" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="shipperiphone" property="shipperiphone" jdbcType="VARCHAR" />
+    <result column="consigneeiphone" property="consigneeiphone" jdbcType="VARCHAR" />
+    <result column="shipperaddress" property="shipperaddress" jdbcType="VARCHAR" />
+    <result column="consigneeaddress" property="consigneeaddress" jdbcType="VARCHAR" />
+    <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="suserid" property="suserid" jdbcType="INTEGER" />
+    <result column="cuserid" property="cuserid" jdbcType="INTEGER" />
+    <association property="accept" javaType="com.ytc.model.Accept">
+      <id column="acceptid" property="acceptid" jdbcType="INTEGER" />
+      <result column="acceptstatus" property="acceptstatus" jdbcType="INTEGER" />
+      <result column="noacceptwhy" property="noacceptwhy" jdbcType="VARCHAR" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+    <association property="harvest" javaType="com.ytc.model.Harvest">
+      <id column="harvestid" property="harvestid" jdbcType="INTEGER" />
+      <result column="harveststatus" property="harveststatus" jdbcType="INTEGER" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+    <association property="goods" javaType="com.ytc.model.Goods">
+      <id column="goodsid" property="goodsid" jdbcType="INTEGER" />
+      <result column="goodsname" property="goodsname" jdbcType="VARCHAR" />
+      <result column="goodscount" property="goodscount" jdbcType="INTEGER" />
+      <result column="goodsweight" property="goodsweight" jdbcType="DOUBLE" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+    <association property="freight" javaType="com.ytc.model.Freight">
+      <id column="freightid" property="freightid" jdbcType="INTEGER" />
+      <result column="freightprice" property="freightprice" jdbcType="DOUBLE" />
+      <result column="freightstatus" property="freightstatus" jdbcType="INTEGER" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+
+</mapper>
