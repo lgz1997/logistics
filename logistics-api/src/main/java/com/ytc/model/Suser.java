@@ -3,7 +3,7 @@ package com.ytc.model;
 import java.io.Serializable;
 
 public class Suser implements Serializable {
-    private static final long serialVersionUID = -3139709676596829368L;
+    private static final long serialVersionUID = -903589261972255366L;
     private Integer suserid;
 
     private String susername;
@@ -19,6 +19,10 @@ public class Suser implements Serializable {
     private String compoayaddress;
 
     private Integer suserstatus;
+
+    private String suserbankname;
+
+    private String suserbankid;
 
     public Integer getSuserid() {
         return suserid;
@@ -84,6 +88,22 @@ public class Suser implements Serializable {
         this.suserstatus = suserstatus;
     }
 
+    public String getSuserbankname() {
+        return suserbankname;
+    }
+
+    public void setSuserbankname(String suserbankname) {
+        this.suserbankname = suserbankname == null ? null : suserbankname.trim();
+    }
+
+    public String getSuserbankid() {
+        return suserbankid;
+    }
+
+    public void setSuserbankid(String suserbankid) {
+        this.suserbankid = suserbankid == null ? null : suserbankid.trim();
+    }
+
     @Override
     public String toString() {
         return "Suser{" +
@@ -95,6 +115,8 @@ public class Suser implements Serializable {
                 ", compoaybossname='" + compoaybossname + '\'' +
                 ", compoayaddress='" + compoayaddress + '\'' +
                 ", suserstatus=" + suserstatus +
+                ", suserbankname='" + suserbankname + '\'' +
+                ", suserbankid='" + suserbankid + '\'' +
                 '}';
     }
 }

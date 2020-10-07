@@ -1,6 +1,7 @@
 package com.ytc.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Order implements Serializable {
     private static final long serialVersionUID = 8691588002756095422L;
@@ -24,11 +25,13 @@ public class Order implements Serializable {
 
     private Integer cuserid;
 
-    private Accept accept;
+    private Goods goods;
+
+    private Harvest harvest;
 
     private Freight freight;
 
-    private Goods goods;
+    private Accept accept;
 
     @Override
     public String toString() {
@@ -40,32 +43,14 @@ public class Order implements Serializable {
                 ", consigneeiphone='" + consigneeiphone + '\'' +
                 ", shipperaddress='" + shipperaddress + '\'' +
                 ", consigneeaddress='" + consigneeaddress + '\'' +
-                ", orderdate='" + orderdate + '\'' +
+                ", orderdate=" + orderdate +
                 ", suserid=" + suserid +
                 ", cuserid=" + cuserid +
-                ", accept=" + accept +
-                ", freight=" + freight +
                 ", goods=" + goods +
                 ", harvest=" + harvest +
+                ", freight=" + freight +
+                ", accept=" + accept +
                 '}';
-    }
-
-    private Harvest harvest;
-
-    public Accept getAccept() {
-        return accept;
-    }
-
-    public void setAccept(Accept accept) {
-        this.accept = accept;
-    }
-
-    public Freight getFreight() {
-        return freight;
-    }
-
-    public void setFreight(Freight freight) {
-        this.freight = freight;
     }
 
     public Goods getGoods() {
@@ -82,6 +67,22 @@ public class Order implements Serializable {
 
     public void setHarvest(Harvest harvest) {
         this.harvest = harvest;
+    }
+
+    public Freight getFreight() {
+        return freight;
+    }
+
+    public void setFreight(Freight freight) {
+        this.freight = freight;
+    }
+
+    public Accept getAccept() {
+        return accept;
+    }
+
+    public void setAccept(Accept accept) {
+        this.accept = accept;
     }
 
     public Integer getOrderid() {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.SuserMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Suser" >
+    <id column="suserid" property="suserid" jdbcType="INTEGER" />
+    <result column="susername" property="susername" jdbcType="VARCHAR" />
+    <result column="suserpwd" property="suserpwd" jdbcType="VARCHAR" />
+    <result column="compoayname" property="compoayname" jdbcType="VARCHAR" />
+    <result column="compoayiphone" property="compoayiphone" jdbcType="VARCHAR" />
+    <result column="compoaybossname" property="compoaybossname" jdbcType="VARCHAR" />
+    <result column="compoayaddress" property="compoayaddress" jdbcType="VARCHAR" />
+    <result column="suserstatus" property="suserstatus" jdbcType="INTEGER" />
+    <result column="suserbankname" property="suserbankname" jdbcType="VARCHAR" />
+    <result column="suserbankid" property="suserbankid" jdbcType="VARCHAR" />
+  </resultMap>
+
+</mapper>

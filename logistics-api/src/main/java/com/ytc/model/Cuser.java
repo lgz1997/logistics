@@ -3,7 +3,7 @@ package com.ytc.model;
 import java.io.Serializable;
 
 public class Cuser implements Serializable {
-    private static final long serialVersionUID = -1357489124153032790L;
+    private static final long serialVersionUID = -3111598179589580691L;
     private Integer cuserid;
 
     private String cusername;
@@ -13,6 +13,10 @@ public class Cuser implements Serializable {
     private String cuseriphone;
 
     private String cusercard;
+
+    private String cuserbankname;
+
+    private String cuserbankid;
 
     public Integer getCuserid() {
         return cuserid;
@@ -54,6 +58,22 @@ public class Cuser implements Serializable {
         this.cusercard = cusercard == null ? null : cusercard.trim();
     }
 
+    public String getCuserbankname() {
+        return cuserbankname;
+    }
+
+    public void setCuserbankname(String cuserbankname) {
+        this.cuserbankname = cuserbankname == null ? null : cuserbankname.trim();
+    }
+
+    public String getCuserbankid() {
+        return cuserbankid;
+    }
+
+    public void setCuserbankid(String cuserbankid) {
+        this.cuserbankid = cuserbankid == null ? null : cuserbankid.trim();
+    }
+
     @Override
     public String toString() {
         return "Cuser{" +
@@ -62,6 +82,8 @@ public class Cuser implements Serializable {
                 ", cuserpwd='" + cuserpwd + '\'' +
                 ", cuseriphone='" + cuseriphone + '\'' +
                 ", cusercard='" + cusercard + '\'' +
+                ", cuserbankname='" + cuserbankname + '\'' +
+                ", cuserbankid='" + cuserbankid + '\'' +
                 '}';
     }
 }
