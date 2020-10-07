@@ -63,4 +63,7 @@ public class ConsumerController {
     @Reference
     private SuserService suserService;
 
+    @Reference
+    private  DrawService drawService;
+
 }

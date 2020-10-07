@@ -5,6 +5,7 @@
     <id column="freightid" property="freightid" jdbcType="INTEGER" />
     <result column="freightprice" property="freightprice" jdbcType="DOUBLE" />
     <result column="freightstatus" property="freightstatus" jdbcType="INTEGER" />
+    <result column="freightdraw" property="freightdraw" jdbcType="INTEGER" />
     <result column="orderid" property="orderid" jdbcType="INTEGER" />
   </resultMap>
 

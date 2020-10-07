@@ -5,6 +5,37 @@ import java.util.Date;
 
 public class Order implements Serializable {
     private static final long serialVersionUID = 8691588002756095422L;
+    private String ordercard;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ordercard='" + ordercard + '\'' +
+                ", orderid=" + orderid +
+                ", shipper='" + shipper + '\'' +
+                ", consignee='" + consignee + '\'' +
+                ", shipperiphone='" + shipperiphone + '\'' +
+                ", consigneeiphone='" + consigneeiphone + '\'' +
+                ", shipperaddress='" + shipperaddress + '\'' +
+                ", consigneeaddress='" + consigneeaddress + '\'' +
+                ", orderdate='" + orderdate + '\'' +
+                ", suserid=" + suserid +
+                ", cuserid=" + cuserid +
+                ", goods=" + goods +
+                ", harvest=" + harvest +
+                ", freight=" + freight +
+                ", accept=" + accept +
+                '}';
+    }
+
+    public String getOrdercard() {
+        return ordercard;
+    }
+
+    public void setOrdercard(String ordercard) {
+        this.ordercard = ordercard;
+    }
+
     private Integer orderid;
 
     private String shipper;
@@ -32,26 +63,6 @@ public class Order implements Serializable {
     private Freight freight;
 
     private Accept accept;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderid=" + orderid +
-                ", shipper='" + shipper + '\'' +
-                ", consignee='" + consignee + '\'' +
-                ", shipperiphone='" + shipperiphone + '\'' +
-                ", consigneeiphone='" + consigneeiphone + '\'' +
-                ", shipperaddress='" + shipperaddress + '\'' +
-                ", consigneeaddress='" + consigneeaddress + '\'' +
-                ", orderdate=" + orderdate +
-                ", suserid=" + suserid +
-                ", cuserid=" + cuserid +
-                ", goods=" + goods +
-                ", harvest=" + harvest +
-                ", freight=" + freight +
-                ", accept=" + accept +
-                '}';
-    }
 
     public Goods getGoods() {
         return goods;

@@ -3,6 +3,7 @@
 <mapper namespace="com.ytc.mapper.OrderMapper" >
   <resultMap id="BaseResultMap" type="com.ytc.model.Order" >
     <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="ordercard" property="ordercard" jdbcType="VARCHAR" />
     <result column="shipper" property="shipper" jdbcType="VARCHAR" />
     <result column="consignee" property="consignee" jdbcType="VARCHAR" />
     <result column="shipperiphone" property="shipperiphone" jdbcType="VARCHAR" />

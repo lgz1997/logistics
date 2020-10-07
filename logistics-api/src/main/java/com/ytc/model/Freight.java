@@ -3,12 +3,14 @@ package com.ytc.model;
 import java.io.Serializable;
 
 public class Freight implements Serializable {
-    private static final long serialVersionUID = 9095254543808520456L;
+    private static final long serialVersionUID = 1371502244733967343L;
     private Integer freightid;
 
     private Double freightprice;
 
     private Integer freightstatus;
+
+    private Integer freightdraw;
 
     private Integer orderid;
 
@@ -36,6 +38,14 @@ public class Freight implements Serializable {
         this.freightstatus = freightstatus;
     }
 
+    public Integer getFreightdraw() {
+        return freightdraw;
+    }
+
+    public void setFreightdraw(Integer freightdraw) {
+        this.freightdraw = freightdraw;
+    }
+
     public Integer getOrderid() {
         return orderid;
     }
@@ -50,6 +60,7 @@ public class Freight implements Serializable {
                 "freightid=" + freightid +
                 ", freightprice=" + freightprice +
                 ", freightstatus=" + freightstatus +
+                ", freightdraw=" + freightdraw +
                 ", orderid=" + orderid +
                 '}';
     }
