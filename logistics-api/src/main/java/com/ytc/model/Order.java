@@ -7,10 +7,13 @@ public class Order implements Serializable {
     private static final long serialVersionUID = 8691588002756095422L;
     private String ordercard;
 
-    @Override
-    public String toString() {
+    private Integer orderstatus;
+
+    @java.lang.Override
+    public java.lang.String toString() {
         return "Order{" +
                 "ordercard='" + ordercard + '\'' +
+                ", orderstatus=" + orderstatus +
                 ", orderid=" + orderid +
                 ", shipper='" + shipper + '\'' +
                 ", consignee='" + consignee + '\'' +
@@ -26,6 +29,14 @@ public class Order implements Serializable {
                 ", freight=" + freight +
                 ", accept=" + accept +
                 '}';
+    }
+
+    public Integer getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(Integer orderstatus) {
+        this.orderstatus = orderstatus;
     }
 
     public String getOrdercard() {

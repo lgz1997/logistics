@@ -11,6 +11,7 @@
     <result column="shipperaddress" property="shipperaddress" jdbcType="VARCHAR" />
     <result column="consigneeaddress" property="consigneeaddress" jdbcType="VARCHAR" />
     <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="orderstatus" property="orderstatus" jdbcType="INTEGER" />
     <result column="suserid" property="suserid" jdbcType="INTEGER" />
     <result column="cuserid" property="cuserid" jdbcType="INTEGER" />
     <association property="Accept" javaType="com.ytc.model.Accept">
