@@ -37,9 +37,6 @@ public class ConsumerController {
     private CityService cityService;
 
     @Reference
-    private CountyService countyService;
-
-    @Reference
     private CuserService cuserService;
 
     @Reference
