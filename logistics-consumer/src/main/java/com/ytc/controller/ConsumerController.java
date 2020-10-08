@@ -69,4 +69,8 @@ public class ConsumerController {
     @Reference
     private BillService billService;
 
+    @RequestMapping("Cuserlogin")
+    public String Cuserlogin(){
+        return "Cuserlogin.html";
+    }
 }
