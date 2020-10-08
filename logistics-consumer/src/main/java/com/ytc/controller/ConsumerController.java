@@ -81,4 +81,22 @@ public class ConsumerController {
     public String bossLogin(){
         return "bossLogin.html";
     }
+
+    @RequestMapping("top")
+    public String top(){
+        return "frame/top.html";
+    }
+    @RequestMapping("left")
+    public String left(){
+        return "frame/left.html";
+    }
+    @RequestMapping("center")
+    public String center(){
+        return "frame/center.html";
+    }
+
+    @RequestMapping("test")
+    public String test(){
+        return "suserShow.html";
+    }
 }
