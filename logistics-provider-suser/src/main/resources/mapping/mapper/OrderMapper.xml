@@ -14,7 +14,7 @@
     <result column="orderstatus" property="orderstatus" jdbcType="INTEGER" />
     <result column="suserid" property="suserid" jdbcType="INTEGER" />
     <result column="cuserid" property="cuserid" jdbcType="INTEGER" />
-    <association property="Accept" javaType="com.ytc.model.Accept">
+    <association property="accept" javaType="com.ytc.model.Accept">
       <id column="acceptid" property="acceptid" jdbcType="INTEGER" />
       <result column="acceptstatus" property="acceptstatus" jdbcType="INTEGER" />
       <result column="noacceptwhy" property="noacceptwhy" jdbcType="VARCHAR" />
@@ -27,12 +27,12 @@
       <result column="goodsweight" property="goodsweight" jdbcType="DOUBLE" />
       <result column="orderid" property="orderid" jdbcType="INTEGER" />
     </association>
-    <association property="Harvest" javaType="com.ytc.model.Harvest">
+    <association property="harvest" javaType="com.ytc.model.Harvest">
       <id column="harvestid" property="harvestid" jdbcType="INTEGER" />
       <result column="harveststatus" property="harveststatus" jdbcType="INTEGER" />
       <result column="orderid" property="orderid" jdbcType="INTEGER" />
     </association>
-    <association property="Freight" javaType="com.ytc.model.Freight">
+    <association property="freight" javaType="com.ytc.model.Freight">
       <id column="freightid" property="freightid" jdbcType="INTEGER" />
       <result column="freightprice" property="freightprice" jdbcType="DOUBLE" />
       <result column="freightstatus" property="freightstatus" jdbcType="INTEGER" />
