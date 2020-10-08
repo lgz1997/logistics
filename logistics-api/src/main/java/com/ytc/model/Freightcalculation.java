@@ -3,7 +3,7 @@ package com.ytc.model;
 import java.io.Serializable;
 
 public class Freightcalculation implements Serializable {
-    private static final long serialVersionUID = 6611782740488973351L;
+    private static final long serialVersionUID = 9217755626754647804L;
     private Integer calculationid;
 
     private Integer calculationweight1;
@@ -11,6 +11,19 @@ public class Freightcalculation implements Serializable {
     private Integer calculationweight2;
 
     private Double calculationprice;
+
+    private Integer suserid;
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Freightcalculation{" +
+                "calculationid=" + calculationid +
+                ", calculationweight1=" + calculationweight1 +
+                ", calculationweight2=" + calculationweight2 +
+                ", calculationprice=" + calculationprice +
+                ", suserid=" + suserid +
+                '}';
+    }
 
     public Integer getCalculationid() {
         return calculationid;
@@ -44,13 +57,11 @@ public class Freightcalculation implements Serializable {
         this.calculationprice = calculationprice;
     }
 
-    @Override
-    public String toString() {
-        return "Freightcalculation{" +
-                "calculationid=" + calculationid +
-                ", calculationweight1=" + calculationweight1 +
-                ", calculationweight2=" + calculationweight2 +
-                ", calculationprice=" + calculationprice +
-                '}';
+    public Integer getSuserid() {
+        return suserid;
+    }
+
+    public void setSuserid(Integer suserid) {
+        this.suserid = suserid;
     }
 }

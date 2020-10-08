@@ -6,6 +6,7 @@
     <result column="calculationweight1" property="calculationweight1" jdbcType="INTEGER" />
     <result column="calculationweight2" property="calculationweight2" jdbcType="INTEGER" />
     <result column="calculationprice" property="calculationprice" jdbcType="DOUBLE" />
+    <result column="suserid" property="suserid" jdbcType="INTEGER" />
   </resultMap>
 
 </mapper>

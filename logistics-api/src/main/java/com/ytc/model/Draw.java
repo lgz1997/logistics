@@ -1,19 +1,32 @@
 package com.ytc.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Draw implements Serializable {
-    private static final long serialVersionUID = -4913816539181462305L;
+    private static final long serialVersionUID = 5858669520823786470L;
     private Integer drawid;
 
-    private Date drawdate;
+    private String drawdate;
 
     private Double drawamount;
 
     private String drawbankid;
 
     private Integer drawstatus;
+
+    private Integer suserid;
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Draw{" +
+                "drawid=" + drawid +
+                ", drawdate='" + drawdate + '\'' +
+                ", drawamount=" + drawamount +
+                ", drawbankid='" + drawbankid + '\'' +
+                ", drawstatus=" + drawstatus +
+                ", suserid=" + suserid +
+                '}';
+    }
 
     public Integer getDrawid() {
         return drawid;
@@ -23,11 +36,11 @@ public class Draw implements Serializable {
         this.drawid = drawid;
     }
 
-    public Date getDrawdate() {
+    public String getDrawdate() {
         return drawdate;
     }
 
-    public void setDrawdate(Date drawdate) {
+    public void setDrawdate(String drawdate) {
         this.drawdate = drawdate;
     }
 
@@ -55,14 +68,11 @@ public class Draw implements Serializable {
         this.drawstatus = drawstatus;
     }
 
-    @Override
-    public String toString() {
-        return "Draw{" +
-                "drawid=" + drawid +
-                ", drawdate=" + drawdate +
-                ", drawamount=" + drawamount +
-                ", drawbankid='" + drawbankid + '\'' +
-                ", drawstatus=" + drawstatus +
-                '}';
+    public Integer getSuserid() {
+        return suserid;
+    }
+
+    public void setSuserid(Integer suserid) {
+        this.suserid = suserid;
     }
 }

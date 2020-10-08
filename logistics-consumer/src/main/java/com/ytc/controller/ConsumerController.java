@@ -66,4 +66,10 @@ public class ConsumerController {
     @Reference
     private  DrawService drawService;
 
+    @Reference
+    private BalanceService balanceService;
+
+    @Reference
+    private BillService billService;
+
 }

@@ -7,5 +7,6 @@
     <result column="drawAmount" property="drawamount" jdbcType="DOUBLE" />
     <result column="drawbankid" property="drawbankid" jdbcType="VARCHAR" />
     <result column="drawstatus" property="drawstatus" jdbcType="INTEGER" />
+    <result column="suserid" property="suserid" jdbcType="INTEGER" />
   </resultMap>
 </mapper>
