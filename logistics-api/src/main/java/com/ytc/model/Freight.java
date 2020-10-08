@@ -10,8 +10,6 @@ public class Freight implements Serializable {
 
     private Integer freightstatus;
 
-    private Integer freightdraw;
-
     private Integer orderid;
 
     public Integer getFreightid() {
@@ -38,14 +36,6 @@ public class Freight implements Serializable {
         this.freightstatus = freightstatus;
     }
 
-    public Integer getFreightdraw() {
-        return freightdraw;
-    }
-
-    public void setFreightdraw(Integer freightdraw) {
-        this.freightdraw = freightdraw;
-    }
-
     public Integer getOrderid() {
         return orderid;
     }
@@ -60,7 +50,6 @@ public class Freight implements Serializable {
                 "freightid=" + freightid +
                 ", freightprice=" + freightprice +
                 ", freightstatus=" + freightstatus +
-                ", freightdraw=" + freightdraw +
                 ", orderid=" + orderid +
                 '}';
     }
