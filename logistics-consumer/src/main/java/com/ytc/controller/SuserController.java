@@ -1,8 +1,8 @@
 /**
  * Copyright (C), 2015-2020, XXX有限公司
- * FileName: ConsumerController
+ * FileName: SuserController
  * Author:   没闹~
- * Date:     2020/10/7 14:19
+ * Date:     2020/10/9 7:50
  * Description:
  * History:
  * <author>          <time>          <version>          <desc>
@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 〈〉
  *
  * @author 没闹~
- * @create 2020/10/7
+ * @create 2020/10/9
  * @since 1.0.0
  */
 @Controller
-@RequestMapping("/logistics")
-public class ConsumerController {
+@RequestMapping("/suser")
+public class SuserController {
 
     @Reference
     private AcceptService acceptService;
@@ -69,18 +69,21 @@ public class ConsumerController {
     @Reference
     private BillService billService;
 
-    @RequestMapping("cuserLogin")
-    public String cuserLogin(){
-        return "cuser/cuserLogin.html";
+    @RequestMapping("top")
+    public String top(){
+        return "suser/frame/top.html";
     }
-    @RequestMapping("suserLogin")
-    public String suserLogin(){
-        return "suser/suserLogin.html";
+    @RequestMapping("left")
+    public String left(){
+        return "suser/frame/left.html";
     }
-    @RequestMapping("bossLogin")
-    public String bossLogin(){
-        return "boos/bossLogin.html";
+    @RequestMapping("center")
+    public String center(){
+        return "suser/frame/center.html";
     }
 
-
+    @RequestMapping("test")
+    public String test(){
+        return "suser/suserShow.html";
+    }
 }
