@@ -20,4 +20,7 @@ package com.ytc.service;
  */
 public interface AcceptService {
 
+    void accept(Integer id);
+
+    void noaccept(Integer id, String idea);
 }

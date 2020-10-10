@@ -12,8 +12,11 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.BillMapper;
+import com.ytc.model.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -29,4 +32,9 @@ public class BillServiceImpl implements BillService{
 
     @Autowired
     private BillMapper billMapper;
+
+    @Override
+    public List<Bill> select(int suserid) {
+        return billMapper.select(suserid);
+    }
 }

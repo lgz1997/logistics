@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+筛选条件<br>
+<form id="tjselect">
+<select name="valuename">
+    <option value="1">订单号</option>
+    <option value="2">发货人姓名</option>
+    <option value="3">发货人手机号</option>
+</select>   <input type="text" name="whatname"><br>
+支付状态:<select name="freight.freightstatus">
+            <option value="0">全部</option>
+            <option value="1">已支付</option>
+            <option value="2">未支付</option>
+         </select><br>
+<select name="address">
+    <option value="1">按发货地</option>
+    <option value="2">按收货地</option>
+</select>
+    <select name="address1" id="sheng" onchange="changge()">
+         <option value="">请选择</option>
+    </select>
+    <select name="address2" id="shi">
+        <option value="">请选择</option>
+    </select><br>
+    <input type="button" value="查找" onclick="serach()"><br>
+</form>
+<div id="divv"></div>
+</body>
+<script>
+    $(function (){
+        selectProvince();
+        selectCity();
+        serach();
+    })
+
+    function selectProvince(){
+        $.ajax({
+            url:"/suser/selectProvince",
+            type:"post",
+            dataType:"json",
+            success:function (data){
+                var str="<option value=''>请选择</option>";
+                for (var i=0;i<data.length;i++){
+                    str+="<option value='"+data[i].provinceid+"'>"+data[i].provincename+"</option>";
+                }
+                $("#sheng").html(str);
+            },error:function (){
+                alert("查询省失败");
+            }
+        })
+    }
+
+    var city=null;
+    function selectCity(){
+        $.ajax({
+            url:"/suser/selectCity",
+            type:"post",
+            dataType:"json",
+            success:function (data){
+                city=data;
+            },error:function (){
+                alert("查询市失败");
+            }
+        })
+    }
+
+    function changge(){
+        var sheng=$("#sheng").val();
+        var str="<option value=''>请选择</option>";
+        for (var i=0;i<city.length;i++){
+            if (city[i].provinceid==sheng){
+                str+="<option value='"+city[i].cityid+"'>"+city[i].cityname+"</option>";
+            }
+        }
+        $("#shi").html(str);
+    }
+
+    function serach(){
+        $.ajax({
+            url:"/suser/select",
+            type:"get",
+            dataType:"html",
+            data:$("#tjselect").serialize(),
+            success:function (data){
+                $("#divv").html(data);
+            },error:function (){
+                alert("查询订单失败");
+            }
+        })
+    }
+</script>
+</html>

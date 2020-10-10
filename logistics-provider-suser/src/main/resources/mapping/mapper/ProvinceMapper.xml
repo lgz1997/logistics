@@ -5,5 +5,10 @@
     <id column="provinceid" property="provinceid" jdbcType="INTEGER" />
     <result column="provincename" property="provincename" jdbcType="VARCHAR" />
   </resultMap>
-
+<select id="selectProvince" resultMap="BaseResultMap">
+  select * from province
+</select>
+  <select id="selectProvincename" resultMap="BaseResultMap">
+    select * from province where provinceid=#{address1}
+  </select>
 </mapper>

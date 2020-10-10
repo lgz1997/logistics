@@ -11,9 +11,16 @@
 package com.ytc.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.sun.org.apache.xpath.internal.operations.Or;
+import com.ytc.model.*;
 import com.ytc.service.*;
+import org.apache.zookeeper.data.Id;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -85,5 +92,79 @@ public class SuserController {
     @RequestMapping("test")
     public String test(){
         return "suser/suserShow.html";
+    }
+
+    @RequestMapping("toOrderShow")
+    public String toOrderShow(Model m){
+        return "suser/toOrderShow.html";
+    }
+
+    @RequestMapping("selectProvince")
+    @ResponseBody
+    public List<Province> selectProvince(){
+        List<Province> list=provinceService.selectProvince();
+        return list;
+    }
+    @RequestMapping("selectCity")
+    @ResponseBody
+    public List<City> selectCity(){
+        List<City> list=cityService.selectCity();
+        return list;
+    }
+
+    @RequestMapping("select")
+    public String select(Model m,Order o,Integer valuename,String whatname,Integer address,Integer address1,Integer address2){
+        String str="";
+        if(address1!=null){
+           Province p=provinceService.selectProvincename(address1);
+            str+=p.getProvincename();
+       }
+       if(address2!=null){
+           City c=cityService.selectCityname(address2);
+           str+=c.getCityname();
+       }
+
+        if(valuename==1){
+            o.setOrdercard(whatname);
+        }else if (valuename==2){
+            o.setShipper(whatname);
+        }else if(valuename==3){
+            o.setShipperiphone(whatname);
+        }
+        if(address==1){
+            o.setShipperaddress(str);
+        }else if(address==2){
+            o.setConsigneeaddress(str);
+        }
+        List<Order>list=orderService.select(o);
+        m.addAttribute("list",list);
+        return "suser/orderShow.html";
+    }
+
+    @RequestMapping("details")
+    public String details(Model m,Integer id){
+        Order o = orderService.details(id);
+        m.addAttribute("o",o);
+        return "suser/details.html";
+    }
+
+    @RequestMapping("yesaccept")
+    @ResponseBody
+    public void yesaccept(Integer id){
+        acceptService.accept(id);
+    }
+    @RequestMapping("noaccept")
+    @ResponseBody
+    public void noaccept(Integer id,String idea){
+        acceptService.noaccept(id,idea);
+    }
+
+    @RequestMapping("bill")
+    public String bill(Model m){
+        List<Bill> list=billService.select(1);
+        m.addAttribute("list",list);
+        Balance balance=balanceService.select(1);
+        m.addAttribute("balance",balance);
+        return "suser/bill.html";
     }
 }

@@ -12,8 +12,11 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.ProvinceMapper;
+import com.ytc.model.Province;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -29,4 +32,14 @@ public class ProvinceServiceImpl implements ProvinceService{
 
     @Autowired
     private ProvinceMapper provinceMapper;
+
+    @Override
+    public List<Province> selectProvince() {
+        return provinceMapper.selectProvince();
+    }
+
+    @Override
+    public Province selectProvincename(Integer address1) {
+        return provinceMapper.selectProvincename(address1);
+    }
 }

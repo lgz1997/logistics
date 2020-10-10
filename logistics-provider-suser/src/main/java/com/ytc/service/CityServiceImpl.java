@@ -12,8 +12,11 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.CityMapper;
+import com.ytc.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -29,4 +32,14 @@ public class CityServiceImpl implements CityService{
 
     @Autowired
     private CityMapper cityMapper;
+
+    @Override
+    public List<City> selectCity() {
+        return cityMapper.selectCity();
+    }
+
+    @Override
+    public City selectCityname(Integer address2) {
+        return cityMapper.selectCityname(address2);
+    }
 }

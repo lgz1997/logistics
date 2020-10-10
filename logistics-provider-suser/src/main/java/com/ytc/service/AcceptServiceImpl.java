@@ -29,4 +29,14 @@ public class AcceptServiceImpl implements AcceptService{
 
     @Autowired
     private AcceptMapper acceptMapper;
+
+    @Override
+    public void accept(Integer id) {
+        acceptMapper.accept(id);
+    }
+
+    @Override
+    public void noaccept(Integer id, String idea) {
+        acceptMapper.noaccept(id,idea);
+    }
 }

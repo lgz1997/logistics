@@ -10,6 +10,10 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Bill;
+
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +24,5 @@ package com.ytc.service;
  */
 public interface BillService {
 
+    List<Bill> select(int suserid);
 }

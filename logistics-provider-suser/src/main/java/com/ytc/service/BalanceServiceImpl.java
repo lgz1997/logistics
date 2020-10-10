@@ -12,6 +12,7 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.BalanceMapper;
+import com.ytc.model.Balance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,4 +30,9 @@ public class BalanceServiceImpl implements BalanceService{
 
     @Autowired
     private BalanceMapper balanceMapper;
+
+    @Override
+    public Balance select(int suserid) {
+        return balanceMapper.select(suserid);
+    }
 }

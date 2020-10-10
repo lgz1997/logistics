@@ -9,44 +9,6 @@ public class Order implements Serializable {
 
     private Integer orderstatus;
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Order{" +
-                "ordercard='" + ordercard + '\'' +
-                ", orderstatus=" + orderstatus +
-                ", orderid=" + orderid +
-                ", shipper='" + shipper + '\'' +
-                ", consignee='" + consignee + '\'' +
-                ", shipperiphone='" + shipperiphone + '\'' +
-                ", consigneeiphone='" + consigneeiphone + '\'' +
-                ", shipperaddress='" + shipperaddress + '\'' +
-                ", consigneeaddress='" + consigneeaddress + '\'' +
-                ", orderdate='" + orderdate + '\'' +
-                ", suserid=" + suserid +
-                ", cuserid=" + cuserid +
-                ", goods=" + goods +
-                ", harvest=" + harvest +
-                ", freight=" + freight +
-                ", accept=" + accept +
-                '}';
-    }
-
-    public Integer getOrderstatus() {
-        return orderstatus;
-    }
-
-    public void setOrderstatus(Integer orderstatus) {
-        this.orderstatus = orderstatus;
-    }
-
-    public String getOrdercard() {
-        return ordercard;
-    }
-
-    public void setOrdercard(String ordercard) {
-        this.ordercard = ordercard;
-    }
-
     private Integer orderid;
 
     private String shipper;
@@ -74,6 +36,22 @@ public class Order implements Serializable {
     private Freight freight;
 
     private Accept accept;
+
+    public Integer getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(Integer orderstatus) {
+        this.orderstatus = orderstatus;
+    }
+
+    public String getOrdercard() {
+        return ordercard;
+    }
+
+    public void setOrdercard(String ordercard) {
+        this.ordercard = ordercard;
+    }
 
     public Goods getGoods() {
         return goods;
@@ -185,5 +163,27 @@ public class Order implements Serializable {
 
     public void setCuserid(Integer cuserid) {
         this.cuserid = cuserid;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ordercard='" + ordercard + '\'' +
+                ", orderstatus=" + orderstatus +
+                ", orderid=" + orderid +
+                ", shipper='" + shipper + '\'' +
+                ", consignee='" + consignee + '\'' +
+                ", shipperiphone='" + shipperiphone + '\'' +
+                ", consigneeiphone='" + consigneeiphone + '\'' +
+                ", shipperaddress='" + shipperaddress + '\'' +
+                ", consigneeaddress='" + consigneeaddress + '\'' +
+                ", orderdate='" + orderdate + '\'' +
+                ", suserid=" + suserid +
+                ", cuserid=" + cuserid +
+                ", goods=" + goods +
+                ", harvest=" + harvest +
+                ", freight=" + freight +
+                ", accept=" + accept +
+                '}';
     }
 }

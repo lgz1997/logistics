@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+当前账户余额:<a th:text="${balance.balanceprice}+元"></a><br>
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>交易号</td>
+        <td>交易时间</td>
+        <td>收支类型</td>
+        <td>金额</td>
+    </tr>
+    <tr th:each="b:${list}">
+        <td th:text="${b.billid}">id</td>
+        <td th:text="${b.billdealid}">交易号</td>
+        <td th:text="${b.billdate}">交易时间</td>
+        <a th:if="${b.billtype==1}">
+            <td th:text="运费收入"></td>
+            <td th:text="'+'+${b.billprice}+元">金额</td>
+        </a>
+        <a th:if="${b.billtype==2}">
+            <td th:text="退单退款"></td>
+            <td th:text="'-'+${b.billprice}+元">金额</td>
+        </a>
+        <a th:if="${b.billtype==3}">
+            <td th:text="余额提现"></td>
+            <td th:text="'-'+${b.billprice}+元">金额</td>
+        </a>
+    </tr>
+</table>
+</body>
+</html>

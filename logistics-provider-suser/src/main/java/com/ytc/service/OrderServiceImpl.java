@@ -12,8 +12,11 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.OrderMapper;
+import com.ytc.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -29,4 +32,14 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Override
+    public List<Order> select(Order o) {
+        return orderMapper.select(o);
+    }
+
+    @Override
+    public Order details(Integer id) {
+        return orderMapper.details(id);
+    }
 }
