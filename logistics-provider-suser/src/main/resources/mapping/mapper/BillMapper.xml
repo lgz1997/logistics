@@ -12,4 +12,7 @@
 <select id="select" resultMap="BaseResultMap">
   select * from bill where suserid=#{suserid}  order by billdate desc
 </select>
+  <insert id="water">
+    insert into bill values(billid,#{b.billdealid},sysdate(),3,#{b.billprice},#{b.suserid})
+  </insert>
 </mapper>

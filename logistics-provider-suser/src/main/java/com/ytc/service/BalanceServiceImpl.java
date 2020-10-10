@@ -35,4 +35,9 @@ public class BalanceServiceImpl implements BalanceService{
     public Balance select(int suserid) {
         return balanceMapper.select(suserid);
     }
+
+    @Override
+    public void tixian(Integer suserid, Double money) {
+        balanceMapper.tixian(suserid,money);
+    }
 }

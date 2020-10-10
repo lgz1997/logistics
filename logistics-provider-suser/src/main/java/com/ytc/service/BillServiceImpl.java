@@ -37,4 +37,9 @@ public class BillServiceImpl implements BillService{
     public List<Bill> select(int suserid) {
         return billMapper.select(suserid);
     }
+
+    @Override
+    public void water(Bill bill) {
+        billMapper.water(bill);
+    }
 }
