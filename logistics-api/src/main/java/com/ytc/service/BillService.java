@@ -25,4 +25,6 @@ import java.util.List;
 public interface BillService {
 
     List<Bill> select(int suserid);
+
+    void water(Bill bill);
 }

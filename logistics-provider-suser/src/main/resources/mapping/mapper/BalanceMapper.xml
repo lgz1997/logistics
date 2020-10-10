@@ -9,4 +9,9 @@
 <select id="select" resultMap="BaseResultMap">
   select * from balance where suserid=#{suserid}
 </select>
+
+  <update id="tixian">
+    update balance set balanceprice=balanceprice-#{money} where suserid=#{suserid}
+
+  </update>
 </mapper>

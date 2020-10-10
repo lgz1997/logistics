@@ -23,4 +23,6 @@ import com.ytc.model.Balance;
 public interface BalanceService {
 
     Balance select(int suserid);
+
+    void tixian(Integer suserid, Double money);
 }

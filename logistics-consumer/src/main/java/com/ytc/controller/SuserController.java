@@ -12,6 +12,7 @@ package com.ytc.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.sun.org.apache.xpath.internal.operations.Or;
+import com.ytc.controller.util.RandomIDUtil;
 import com.ytc.model.*;
 import com.ytc.service.*;
 import org.apache.zookeeper.data.Id;
@@ -160,11 +161,25 @@ public class SuserController {
     }
 
     @RequestMapping("bill")
-    public String bill(Model m){
+    public String bill(Model m,Integer suserid){
         List<Bill> list=billService.select(1);
         m.addAttribute("list",list);
         Balance balance=balanceService.select(1);
         m.addAttribute("balance",balance);
         return "suser/bill.html";
     }
+    @RequestMapping("tixian")
+    @ResponseBody
+    public void tixian(Integer suserid, Double money){
+        balanceService.tixian(suserid, money);
+        Bill bill= new Bill();
+        RandomIDUtil ra=new RandomIDUtil();
+        Long id = ra.nextId();
+        String str="XL"+id;
+        bill.setSuserid(suserid);
+        bill.setBilldealid(str);
+        bill.setBillprice(money);
+        billService.water(bill);
+    }
+
 }

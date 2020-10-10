@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="../js/jquery.min.js"></script>
 <body>
 当前账户余额:<a th:text="${balance.balanceprice}+元"></a><br>
 <table border="1">
@@ -31,6 +32,23 @@
             <td th:text="'-'+${b.billprice}+元">金额</td>
         </a>
     </tr>
-</table>
+</table><br>
+余额提现:<input type="text" name="money" id="money"><input type="button" value="提现" th:onclick="'javascript:tixian('+${balance.suserid}+')'">
 </body>
+<script>
+    function tixian(suserid){
+        var money=$("#money").val();
+        $.ajax({
+            url:"/suser/tixian",
+            type:"post",
+            data:{"money":money,"suserid":suserid},
+            success:function(data){
+                location.href="/suser/bill?suserid="+suserid;
+            },error:function (){
+                alert("提现失败")
+            }
+        })
+
+    }
+</script>
 </html>
