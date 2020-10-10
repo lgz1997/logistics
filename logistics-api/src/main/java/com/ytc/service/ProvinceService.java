@@ -10,6 +10,11 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.City;
+import com.ytc.model.Province;
+
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +25,7 @@ package com.ytc.service;
  */
 public interface ProvinceService {
 
+    List<Province> selectProvince();
+
+    Province selectProvincename(Integer address1);
 }

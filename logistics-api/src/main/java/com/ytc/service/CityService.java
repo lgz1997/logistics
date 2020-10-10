@@ -10,6 +10,10 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.City;
+
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +24,7 @@ package com.ytc.service;
  */
 public interface CityService {
 
+    List<City> selectCity();
+
+    City selectCityname(Integer address2);
 }

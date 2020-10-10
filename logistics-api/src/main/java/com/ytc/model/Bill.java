@@ -12,7 +12,17 @@ public class Bill implements Serializable {
 
     private Integer billtype;
 
+    private Double billprice;
+
     private Integer suserid;
+
+    public Double getBillprice() {
+        return billprice;
+    }
+
+    public void setBillprice(Double billprice) {
+        this.billprice = billprice;
+    }
 
     public Integer getBillid() {
         return billid;
@@ -59,8 +69,9 @@ public class Bill implements Serializable {
         return "Bill{" +
                 "billid=" + billid +
                 ", billdealid='" + billdealid + '\'' +
-                ", billdate=" + billdate +
+                ", billdate='" + billdate + '\'' +
                 ", billtype=" + billtype +
+                ", billprice=" + billprice +
                 ", suserid=" + suserid +
                 '}';
     }

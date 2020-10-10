@@ -10,6 +10,8 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Balance;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +22,5 @@ package com.ytc.service;
  */
 public interface BalanceService {
 
+    Balance select(int suserid);
 }

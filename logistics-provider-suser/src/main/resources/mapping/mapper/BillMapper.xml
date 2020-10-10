@@ -6,7 +6,10 @@
     <result column="billdealid" property="billdealid" jdbcType="VARCHAR" />
     <result column="billdate" property="billdate" jdbcType="TIMESTAMP" />
     <result column="billtype" property="billtype" jdbcType="INTEGER" />
+    <result column="billprice" property="billprice" jdbcType="DOUBLE" />
     <result column="suserid" property="suserid" jdbcType="INTEGER" />
   </resultMap>
-
+<select id="select" resultMap="BaseResultMap">
+  select * from bill where suserid=#{suserid}  order by billdate desc
+</select>
 </mapper>
