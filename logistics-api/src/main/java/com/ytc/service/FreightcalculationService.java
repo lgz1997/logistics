@@ -10,6 +10,9 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Freightcalculation;
+import com.ytc.model.Suser;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +23,7 @@ package com.ytc.service;
  */
 public interface FreightcalculationService {
 
+    Freightcalculation sel(Suser suser);
+
+    void upf(Freightcalculation freightcalculation);
 }
