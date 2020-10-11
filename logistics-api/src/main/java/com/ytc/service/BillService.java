@@ -11,6 +11,7 @@
 package com.ytc.service;
 
 import com.ytc.model.Bill;
+import com.ytc.util.PageUtil;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
  */
 public interface BillService {
 
-    List<Bill> select(int suserid);
-
     void water(Bill bill);
+
+    PageUtil<Bill> select(Integer suserid, PageUtil<Bill> page);
 }

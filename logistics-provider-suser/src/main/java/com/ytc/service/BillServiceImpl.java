@@ -13,6 +13,7 @@ package com.ytc.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.BillMapper;
 import com.ytc.model.Bill;
+import com.ytc.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,12 +35,16 @@ public class BillServiceImpl implements BillService{
     private BillMapper billMapper;
 
     @Override
-    public List<Bill> select(int suserid) {
-        return billMapper.select(suserid);
+    public void water(Bill bill) {
+        billMapper.water(bill);
     }
 
     @Override
-    public void water(Bill bill) {
-        billMapper.water(bill);
+    public PageUtil<Bill> select(Integer suserid, PageUtil<Bill> page) {
+        long count=billMapper.selectCount(suserid);
+        page=new PageUtil<Bill>(page.getCpage(),count, page.getPageSize());
+        List<Bill> list=billMapper.select(suserid,page.getStart(),page.getPageSize());
+        page.setList(list);
+        return page;
     }
 }
