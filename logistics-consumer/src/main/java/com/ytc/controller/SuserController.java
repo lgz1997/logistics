@@ -223,17 +223,12 @@ public class SuserController {
 
     }
 
-    @RequestMapping("imgCode")//202
-    @ResponseBody//202
-    public String imgCode(HttpServletRequest request , HttpServletResponse response){//202
-        String s ="";//202
-        try {//202
-            s = CheckImgUtil.checkImg(request,response);//202
-        } catch (Exception e) {//202
-            e.printStackTrace();//202
-        }//202
-        return s;//202
-    }//202
+    //controller层刷新验证码方法  ↓
+    @RequestMapping("imgCode")
+    @ResponseBody
+    public String imgCode(HttpServletRequest request,HttpServletResponse response) throws Exception{
+        return CheckImgUtil.checkImg(request, response);
+    }
 
 
     //注册

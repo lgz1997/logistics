@@ -10,7 +10,7 @@
     用户名：<input type="text" id="susername" name="susername"><span id="sp1"></span><br>
     密码:<input type="password" id="suserpwd" name="suserpwd"><span id="sp2"></span><br>
     验证码:<input type="text" id="imgcode" name="imgcode">
-    <img src="/suser/imgCode.do" id="imgCode"><span id="sp3"></span><br>
+    <img src="/suser/imgCode" id="imgCode"><span id="sp3"></span><br>
     <input type="button" value="登录" onclick="suserLogin()">
     <input type="button" value="申请入驻" onclick="reg()"><!--101写完去con-->
 </form>
@@ -60,7 +60,7 @@
                                 location.href="/suser/suserShow";
                             }
                             if(data=="7"){
-                                alert("入驻申请没有通过审核，请重新申请入驻")
+                                alert("入驻申请没有通过审核，请重新申请入驻");
                             }
                         },error:function () {
                             alert("登录失败");
