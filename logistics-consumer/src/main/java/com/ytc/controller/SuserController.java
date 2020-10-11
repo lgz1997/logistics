@@ -17,6 +17,7 @@ import com.ytc.model.*;
 import com.ytc.service.*;
 import com.ytc.util.CheckImgUtil;
 import com.ytc.util.Md5Util;
+import com.ytc.util.PageUtil;
 import org.apache.zookeeper.data.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,8 +84,16 @@ public class SuserController {
     private BillService billService;
 
     @RequestMapping("top")
-    public String top(){
+    public String top(HttpServletRequest request,Model m){
+        Suser suser=(Suser) request.getSession().getAttribute("suser");
+        m.addAttribute("suser",suser);
         return "suser/frame/top.html";
+    }
+
+    @RequestMapping("noLogin")
+    @ResponseBody
+    public void noLogin(HttpServletRequest request){
+        request.getSession().removeAttribute("suser");
     }
     @RequestMapping("left")
     public String left(){
@@ -96,7 +105,7 @@ public class SuserController {
     }
 
     @RequestMapping("suserShow")
-    public String test(){
+    public String suserShow(){
         return "suser/suserShow.html";
     }
 
@@ -119,7 +128,7 @@ public class SuserController {
     }
 
     @RequestMapping("select")
-    public String select(Model m,Order o,Integer valuename,String whatname,Integer address,Integer address1,Integer address2){
+    public String select(PageUtil<Order> page,Model m, Order o, Integer valuename, String whatname, Integer address, Integer address1, Integer address2, HttpServletRequest request){
         String str="";
         if(address1!=null){
            Province p=provinceService.selectProvincename(address1);
@@ -142,8 +151,10 @@ public class SuserController {
         }else if(address==2){
             o.setConsigneeaddress(str);
         }
-        List<Order>list=orderService.select(o);
-        m.addAttribute("list",list);
+        Suser suser=(Suser) request.getSession().getAttribute("suser");
+        o.setSuserid(suser.getSuserid());
+        page=orderService.select(o,page);
+        m.addAttribute("page",page);
         return "suser/orderShow.html";
     }
 
@@ -165,25 +176,36 @@ public class SuserController {
         acceptService.noaccept(id,idea);
     }
 
+    @RequestMapping("tobill")
+    public String tobill(){
+        return "suser/tobill.html";
+    }
     @RequestMapping("bill")
-    public String bill(Model m,Integer suserid){
-        List<Bill> list=billService.select(1);
-        m.addAttribute("list",list);
-        Balance balance=balanceService.select(1);
+    public String bill(Model m,PageUtil<Bill> page,HttpServletRequest request){
+        Suser suser=(Suser) request.getSession().getAttribute("suser");
+        page=billService.select(suser.getSuserid(),page);
+        m.addAttribute("page",page);
+        Balance balance=balanceService.select(suser.getSuserid());
         m.addAttribute("balance",balance);
         return "suser/bill.html";
     }
+
+    @RequestMapping("totixian")
+    @ResponseBody
+    public Suser totixian(HttpServletRequest request){
+        Suser suser=(Suser) request.getSession().getAttribute("suser");
+        return suser;
+    }
     @RequestMapping("tixian")
     @ResponseBody
-    public void tixian(Integer suserid, Double money){
-        balanceService.tixian(suserid, money);
-        Bill bill= new Bill();
+    public void tixian(Bill bill,HttpServletRequest request){
+        Suser suser=(Suser) request.getSession().getAttribute("suser");
+        balanceService.tixian(suser.getSuserid(),bill.getBillprice());
         RandomIDUtil ra=new RandomIDUtil();
         Long id = ra.nextId();
         String str="XL"+id;
-        bill.setSuserid(suserid);
+        bill.setSuserid(suser.getSuserid());
         bill.setBilldealid(str);
-        bill.setBillprice(money);
         billService.water(bill);
     }
 

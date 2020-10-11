@@ -29,6 +29,7 @@
         <option value="">请选择</option>
     </select><br>
     <input type="button" value="查找" onclick="serach()"><br>
+    <input type="hidden" name="cpage" id="cpage">
 </form>
 <div id="divv"></div>
 </body>
@@ -36,7 +37,7 @@
     $(function (){
         selectProvince();
         selectCity();
-        serach();
+        serach(1);
     })
 
     function selectProvince(){
@@ -81,7 +82,8 @@
         $("#shi").html(str);
     }
 
-    function serach(){
+    function serach(cpage){
+        $("#cpage").val(cpage);
         $.ajax({
             url:"/suser/select",
             type:"get",

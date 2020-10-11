@@ -11,8 +11,8 @@
 package com.ytc.service;
 
 import com.ytc.model.Order;
+import com.ytc.util.PageUtil;
 
-import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -24,7 +24,7 @@ import java.util.List;
  */
 public interface OrderService {
 
-    List<Order> select(Order o);
+    PageUtil<Order> select(Order o,PageUtil<Order> page);
 
     Order details(Integer id);
 }

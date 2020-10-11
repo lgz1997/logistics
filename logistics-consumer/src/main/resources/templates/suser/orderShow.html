@@ -17,7 +17,7 @@
         <td>发货人电话</td>
         <td><a>订单详情</a></td>
     </tr>
-    <tr th:each="o:${list}">
+    <tr th:each="o:${page.list}">
         <td th:text="${o.ordercard}">订单号</td>
         <td th:text="${o.orderdate}">下单时间</td>
         <td th:text="${o.shipperaddress}">发货地</td>
@@ -27,6 +27,7 @@
         <td><a href="#" th:onclick="'javascript:details('+${o.orderid}+')'">订单详情</a></td>
     </tr>
 </table>
+<div th:replace="page::html"/>
 </body>
 <script>
     function details(id){

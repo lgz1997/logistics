@@ -7,6 +7,7 @@
 <script src="../js/jquery.min.js"></script>
 <body>
 当前账户余额:<a th:text="${balance.balanceprice}+元"></a><br>
+余额提现:<input type="text" name="money" id="billprice"><input type="button" value="提现" th:onclick="'javascript:totixian()'"><br>
 <table border="1">
     <tr>
         <td>id</td>
@@ -15,7 +16,7 @@
         <td>收支类型</td>
         <td>金额</td>
     </tr>
-    <tr th:each="b:${list}">
+    <tr th:each="b:${page.list}">
         <td th:text="${b.billid}">id</td>
         <td th:text="${b.billdealid}">交易号</td>
         <td th:text="${b.billdate}">交易时间</td>
@@ -32,23 +33,37 @@
             <td th:text="'-'+${b.billprice}+元">金额</td>
         </a>
     </tr>
-</table><br>
-余额提现:<input type="text" name="money" id="money"><input type="button" value="提现" th:onclick="'javascript:tixian('+${balance.suserid}+')'">
+</table>
+<div th:replace="page::html"/>
 </body>
 <script>
-    function tixian(suserid){
-        var money=$("#money").val();
+
+    function totixian(){
+        $.ajax({
+            url:"/suser/totixian",
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if(confirm("确定提现到银行卡号为:"+data.suserbankid+"的账户吗?")){
+                    tixian();
+                }
+            },error:function (){
+                alert("获取用户信息失败");
+            }
+        })
+    }
+    function tixian(){
+        var billprice=$("#billprice").val();
         $.ajax({
             url:"/suser/tixian",
             type:"post",
-            data:{"money":money,"suserid":suserid},
+            data:{"billprice":billprice},
             success:function(data){
-                location.href="/suser/bill?suserid="+suserid;
+                location.href="/suser/tobill";
             },error:function (){
                 alert("提现失败")
             }
         })
-
     }
 </script>
 </html>
