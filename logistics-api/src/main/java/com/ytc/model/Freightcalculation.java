@@ -3,27 +3,28 @@ package com.ytc.model;
 import java.io.Serializable;
 
 public class Freightcalculation implements Serializable {
-    private static final long serialVersionUID = 9217755626754647804L;
+    private static final long serialVersionUID = -1623705600759882713L;
     private Integer calculationid;
 
-    private Integer calculationweight1;
+    private Double one1;
 
-    private Integer calculationweight2;
+    private Double one2;
 
-    private Double calculationprice;
+    private Double oneprice;
+
+    private Double two1;
+
+    private Double two2;
+
+    private Double twoprice;
+
+    private Double three1;
+
+    private Double three2;
+
+    private Double threeprice;
 
     private Integer suserid;
-
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Freightcalculation{" +
-                "calculationid=" + calculationid +
-                ", calculationweight1=" + calculationweight1 +
-                ", calculationweight2=" + calculationweight2 +
-                ", calculationprice=" + calculationprice +
-                ", suserid=" + suserid +
-                '}';
-    }
 
     public Integer getCalculationid() {
         return calculationid;
@@ -33,28 +34,76 @@ public class Freightcalculation implements Serializable {
         this.calculationid = calculationid;
     }
 
-    public Integer getCalculationweight1() {
-        return calculationweight1;
+    public Double getOne1() {
+        return one1;
     }
 
-    public void setCalculationweight1(Integer calculationweight1) {
-        this.calculationweight1 = calculationweight1;
+    public void setOne1(Double one1) {
+        this.one1 = one1;
     }
 
-    public Integer getCalculationweight2() {
-        return calculationweight2;
+    public Double getOne2() {
+        return one2;
     }
 
-    public void setCalculationweight2(Integer calculationweight2) {
-        this.calculationweight2 = calculationweight2;
+    public void setOne2(Double one2) {
+        this.one2 = one2;
     }
 
-    public Double getCalculationprice() {
-        return calculationprice;
+    public Double getOneprice() {
+        return oneprice;
     }
 
-    public void setCalculationprice(Double calculationprice) {
-        this.calculationprice = calculationprice;
+    public void setOneprice(Double oneprice) {
+        this.oneprice = oneprice;
+    }
+
+    public Double getTwo1() {
+        return two1;
+    }
+
+    public void setTwo1(Double two1) {
+        this.two1 = two1;
+    }
+
+    public Double getTwo2() {
+        return two2;
+    }
+
+    public void setTwo2(Double two2) {
+        this.two2 = two2;
+    }
+
+    public Double getTwoprice() {
+        return twoprice;
+    }
+
+    public void setTwoprice(Double twoprice) {
+        this.twoprice = twoprice;
+    }
+
+    public Double getThree1() {
+        return three1;
+    }
+
+    public void setThree1(Double three1) {
+        this.three1 = three1;
+    }
+
+    public Double getThree2() {
+        return three2;
+    }
+
+    public void setThree2(Double three2) {
+        this.three2 = three2;
+    }
+
+    public Double getThreeprice() {
+        return threeprice;
+    }
+
+    public void setThreeprice(Double threeprice) {
+        this.threeprice = threeprice;
     }
 
     public Integer getSuserid() {
@@ -63,5 +112,22 @@ public class Freightcalculation implements Serializable {
 
     public void setSuserid(Integer suserid) {
         this.suserid = suserid;
+    }
+
+    @Override
+    public String toString() {
+        return "Freightcalculation{" +
+                "calculationid=" + calculationid +
+                ", one1=" + one1 +
+                ", one2=" + one2 +
+                ", oneprice=" + oneprice +
+                ", two1=" + two1 +
+                ", two2=" + two2 +
+                ", twoprice=" + twoprice +
+                ", three1=" + three1 +
+                ", three2=" + three2 +
+                ", threeprice=" + threeprice +
+                ", suserid=" + suserid +
+                '}';
     }
 }

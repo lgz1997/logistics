@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+<form id="loginForm">
+    用户名：<input type="text" id="susername" name="susername"><span id="sp1"></span><br>
+    密码:<input type="password" id="suserpwd" name="suserpwd"><span id="sp2"></span><br>
+    验证码:<input type="text" id="imgcode" name="imgcode">
+    <img src="/suser/imgCode.do" id="imgCode"><span id="sp3"></span><br>
+    <input type="button" value="登录" onclick="suserLogin()">
+    <input type="button" value="申请入驻" onclick="reg()"><!--101写完去con-->
+</form>
+
+</body>
+<script>
+    $("#imgCode").click(function(){
+        $(this).attr("src","/suser/imgCode?t="+new Date().getTime());
+    })
+
+    function reg() {
+       location.href="/suser/toReg";
+    }
+
+
+    function suserLogin() {
+
+
+        var susername=$("#susername").val();
+        var suserpwd=$("#suserpwd").val();
+        var imgcode=$("#imgcode").val();
+        if(susername!=null&&susername!=""){
+            $("#sp1").html("");
+            if(suserpwd!=null&&suserpwd!=""){
+                $("#sp2").html("");
+                if(imgcode!=null&&imgcode!=""){
+                    $("#sp3").html("");
+                    $.ajax({
+                        url:"/suser/suserLogin",
+                        type:"post",
+                        data:$("#loginForm").serialize(),
+                        dataType:"json",
+                        success:function (data) {
+                            if(data=="3"){
+                                alert("验证码错误")
+                            }
+                            if(data=="2"){
+                                alert("密码不正确");
+                            }
+                            if(data=="1"){
+                                alert("用户名不存在");
+                            }
+                            if(data=="5"){
+                                alert("入驻申请还未通过审核，请耐心等待");
+                            }
+                            if(data=="6"){
+                                location.href="/suser/suserShow";
+                            }
+                            if(data=="7"){
+                                alert("入驻申请没有通过审核，请重新申请入驻")
+                            }
+                        },error:function () {
+                            alert("登录失败");
+                        }
+                    })
+
+                } else {
+                    $("#sp3").html("<font color='red'>验证码不能为空</font>");
+                }
+            }else {
+                $("#sp2").html("<font color='red'>密码不能为空</font>");
+            }
+        }else {
+            $("#sp1").html("<font color='red'>用户名不能为空</font>");
+        }
+
+
+    }
+</script>
+</html>

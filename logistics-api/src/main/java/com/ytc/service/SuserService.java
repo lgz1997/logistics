@@ -10,6 +10,8 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Suser;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +22,12 @@ package com.ytc.service;
  */
 public interface SuserService {
 
+
+    Suser suserLogin(Suser suser);
+
+    Suser querySuserByName(Suser suser);//105直接去impl
+
+    void reg(Suser suser);//112去impl
+
+    void del(Suser suser);
 }

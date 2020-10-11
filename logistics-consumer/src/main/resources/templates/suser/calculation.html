@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+<form id="upForm">
+    <input type="hidden" name="suserid" th:value="${f.suserid}">
+    运费计算：<br><input type="text" name="one1" th:value="${f.one1}">-
+            <input type="text" name="one2" th:value="${f.one2}">公斤
+            <input type="text" name="oneprice" th:value="${f.oneprice}">元/公斤<br>
+            <input type="text" name="two1" th:value="${f.two1}">-
+            <input type="text" name="two2" th:value="${f.two2}">公斤
+            <input type="text" name="twoprice" th:value="${f.twoprice}">元/公斤<br>
+            <input type="text" name="three1" th:value="${f.three1}">-
+            <input type="text" name="three2" th:value="${f.three2}">公斤
+            <input type="text" name="threeprice" th:value="${f.threeprice}">元/公斤<br>
+        <input type="button" value="修改" id="up">
+</form>
+
+</body>
+<script>
+    $("#up").click(function () {
+
+        $.ajax({
+            url:"/suser/upf",
+            type:"post",
+            data:$("#upForm").serialize(),
+            success:function (data) {
+                alert("修改成功");
+            },error:function () {
+                alert("修改失败");
+            }
+        })
+    })
+
+</script>
+</html>

@@ -14,4 +14,37 @@
     <result column="suserbankid" property="suserbankid" jdbcType="VARCHAR" />
   </resultMap>
 
+  <!--209.写sql-->
+  <select id="suserLogin" resultMap="BaseResultMap" >
+    select
+    *
+    from s_user
+    where susername = #{susername}
+  </select>
+  <!--209.写sql.回到con控制层-->
+
+  <!--108.写sql-->
+  <select id="querySuserByName" parameterType="com.ytc.model.Suser" resultMap="BaseResultMap" >
+    select
+    *
+    from s_user
+    where susername = #{susername}
+  </select>
+  <!--108.写sql.回到con控制层-->
+
+  <!--115-->
+  <insert id="reg">
+    insert into s_user
+    values (suserid,#{suser.susername}, #{suser.suserpwd},
+        #{suser.compoayname}, #{suser.compoayiphone},
+        #{suser.compoaybossname}, #{suser.compoayaddress},
+        0,
+        #{suser.suserbankname}, #{suser.suserbankid}
+      )
+  </insert>
+  <!--115-->
+
+  <delete id="del">
+    delete from s_user where susername = #{suser.susername}
+  </delete>
 </mapper>

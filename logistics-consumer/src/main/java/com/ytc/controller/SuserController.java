@@ -15,12 +15,17 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import com.ytc.controller.util.RandomIDUtil;
 import com.ytc.model.*;
 import com.ytc.service.*;
+import com.ytc.util.CheckImgUtil;
+import com.ytc.util.Md5Util;
 import org.apache.zookeeper.data.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -90,7 +95,7 @@ public class SuserController {
         return "suser/frame/center.html";
     }
 
-    @RequestMapping("test")
+    @RequestMapping("suserShow")
     public String test(){
         return "suser/suserShow.html";
     }
@@ -180,6 +185,92 @@ public class SuserController {
         bill.setBilldealid(str);
         bill.setBillprice(money);
         billService.water(bill);
+    }
+
+
+    @RequestMapping("suserLogin")
+    @ResponseBody
+    public String suserLogin(Suser suser, String imgcode , HttpServletRequest request){
+        HttpSession session = request.getSession();//205处理爆红
+        String checkcode = (String)session.getAttribute("checkcode");//205处理爆红
+        if(!imgcode.equals(checkcode)){//205处理爆红
+            return "3";//205处理爆红
+        }//205处理爆红
+
+        Suser suserReturn =suserService.suserLogin(suser);//205处理爆红
+
+        if(suserReturn!=null){//205处理爆红
+            String md516 = Md5Util.getMd516(suser.getSuserpwd());/*111*/
+            if(md516.equals(suserReturn.getSuserpwd())){//205处理爆红
+                if(suserReturn.getSuserstatus()==1){
+                    //登录成功
+                    session.setAttribute("suser",suserReturn);//205处理爆红
+                    return "6";//205处理爆红
+                }else if(suserReturn.getSuserstatus()==0){
+                    return "5";//205处理爆红
+                }else {
+                    suserService.del(suser);
+                    return "7";
+                }
+            }else {//205处理爆红
+                //密码不正确
+                return "2";//205处理爆红
+            }//205处理爆红
+        }else {//205处理爆红
+            //当前用户不在
+            return "1";//205处理爆红
+        }//205
+
+    }
+
+    @RequestMapping("imgCode")//202
+    @ResponseBody//202
+    public String imgCode(HttpServletRequest request , HttpServletResponse response){//202
+        String s ="";//202
+        try {//202
+            s = CheckImgUtil.checkImg(request,response);//202
+        } catch (Exception e) {//202
+            e.printStackTrace();//202
+        }//202
+        return s;//202
+    }//202
+
+
+    //注册
+    @RequestMapping("reg")/*111*/
+    @ResponseBody
+    public String reg(Suser suser){/*111*/
+        Suser suserRet=suserService.querySuserByName(suser);//104处理爆红
+        if(suserRet==null){
+            //加密
+            String suserpwd = suser.getSuserpwd();/*111*/
+            String md516 = Md5Util.getMd516(suserpwd);/*111*/
+            suser.setSuserpwd(md516);/*111*/
+            suserService.reg(suser);/*111.处理爆红*/
+            return "1";
+        }else {
+            return "2";
+        }
+    }
+
+    @RequestMapping("toReg")
+    public String toReg(){
+        return "suser/reg";
+    }
+
+    @RequestMapping("calculation")
+    public String calculation(Model model,HttpServletRequest request){
+        Suser suser = (Suser) request.getSession().getAttribute("suser");
+        Freightcalculation f=freightcalculationService.sel(suser);
+        model.addAttribute("f",f);
+        return "suser/calculation.html";
+    }
+
+
+    @RequestMapping("upf")
+    @ResponseBody
+    public void upf(Freightcalculation freightcalculation){
+        freightcalculationService.upf(freightcalculation);
     }
 
 }
