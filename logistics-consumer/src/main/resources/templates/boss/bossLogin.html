@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+<form id="loginForm">
+    用户名：<input type="text" id="bossname" name="bossname"><span id="sp1"></span><br>
+    密码:<input type="password" id="bosspwd" name="bosspwd"><span id="sp2"></span><br>
+    验证码:<input type="text" id="imgcode" name="imgcode">
+    <img src="/boss/imgCode" id="imgCode"><span id="sp3"></span><br>
+    <input type="button" value="登录" onclick="bossLogin()">
+    <input type="button" value="注册" onclick="reg()"><!--101写完去con-->
+</form>
+
+</body>
+<script>
+    $("#imgCode").click(function(){
+        $(this).attr("src","/boss/imgCode?t="+new Date().getTime());
+    })
+
+    function reg() {
+        location.href="/boss/toReg";
+    }
+
+
+    function bossLogin() {
+        var bossname=$("#bossname").val();
+        var bosspwd=$("#bosspwd").val();
+        var imgcode=$("#imgcode").val();
+        if(bossname!=null&&bossname!=""){
+            $("#sp1").html("");
+            if(bosspwd!=null&&bosspwd!=""){
+                $("#sp2").html("");
+                if(imgcode!=null&&imgcode!=""){
+                    $("#sp3").html("");
+                    $.ajax({
+                        url:"/boss/bossLogin",
+                        type:"post",
+                        data:$("#loginForm").serialize(),
+                        dataType:"json",
+                        success:function (data) {
+                            if(data=="2"){
+                                alert("密码不正确");
+                            }
+                            if(data=="1"){
+                                alert("用户名不存在");
+                            }
+                            if(data=="3"){
+                                location.href="/boss/bossShow";
+                            }
+                        },error:function () {
+                            alert("登录失败");
+                        }
+                    })
+
+                } else {
+                    $("#sp3").html("<font color='red'>验证码不能为空</font>");
+                }
+            }else {
+                $("#sp2").html("<font color='red'>密码不能为空</font>");
+            }
+        }else {
+            $("#sp1").html("<font color='red'>用户名不能为空</font>");
+        }
+
+
+    }
+</script>
+</html>

@@ -6,5 +6,10 @@
     <result column="cityname" property="cityname" jdbcType="VARCHAR" />
     <result column="provinceid" property="provinceid" jdbcType="INTEGER" />
   </resultMap>
-
+<select id="selectCity" resultMap="BaseResultMap">
+  select * from city
+</select>
+  <select id="selectCityname" resultMap="BaseResultMap">
+    select * from city where cityid=#{address2}
+  </select>
 </mapper>

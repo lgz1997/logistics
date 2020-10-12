@@ -30,6 +30,7 @@
             data:$("#upForm").serialize(),
             success:function (data) {
                 alert("修改成功");
+                location.href="/suser/calculation";
             },error:function () {
                 alert("修改失败");
             }

@@ -40,4 +40,9 @@ public class BalanceServiceImpl implements BalanceService{
     public void tixian(Integer suserid, Double money) {
         balanceMapper.tixian(suserid,money);
     }
+
+    @Override
+    public void add(Integer id) {
+        balanceMapper.add(id);
+    }
 }

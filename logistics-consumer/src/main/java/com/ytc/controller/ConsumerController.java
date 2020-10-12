@@ -76,7 +76,7 @@ public class ConsumerController {
     }
     @RequestMapping("bossLogin")
     public String bossLogin(){
-        return "boos/bossLogin.html";
+        return "boss/bossLogin.html";
     }
     @RequestMapping("index")
     public String index(){

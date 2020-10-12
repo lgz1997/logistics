@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+入驻申请:
+<table border="1">
+  <tr>
+      <td>用户名</td>
+      <td>物流公司名称</td>
+      <td>物流公司电话</td>
+      <td>物流公司老板姓名</td>
+      <td>物流公司地址</td>
+      <td>入驻审核状态</td>
+      <td>银行卡姓名</td>
+      <td>银行卡卡号</td>
+      <td>入驻审核</td>
+  </tr>
+    <tr th:each="s:${list}">
+        <td th:text="${s.susername}">用户名</td>
+        <td th:text="${s.compoayname}">物流公司名称</td>
+        <td th:text="${s.compoayiphone}">物流公司电话</td>
+        <td th:text="${s.compoaybossname}">物流公司老板姓名</td>
+        <td th:text="${s.compoayaddress}">物流公司地址</td>
+        <td th:if="${s.suserstatus==1}">已通过审核</td>
+        <td th:if="${s.suserstatus==0}">未审核</td>
+        <td th:if="${s.suserstatus==2}">已拒绝入驻,用户还没确认</td>
+        <td th:text="${s.suserbankname}">银行卡姓名</td>
+        <td th:text="${s.suserbankid}">银行卡卡号</td>
+        <td th:if="${s.suserstatus==0}">
+            <input type="button" value="通过审核" th:onclick="'javascript:sh('+${s.suserid}+')'">
+            <input type="button" value="拒绝入驻" th:onclick="'javascript:nosh('+${s.suserid}+')'"></td>
+        <td th:if="${s.suserstatus==1 or s.suserstatus==2}"><input type="button" value="通过审核" disabled="disabled">
+            <input type="button" value="拒绝入驻" disabled="disabled"></td>
+    </tr>
+</table>
+</body>
+<script>
+    function sh(id) {
+        if(confirm("确定通过审核吗?")){
+            $.ajax({
+                url:"/boss/sh",
+                type:"get",
+                data:{"id":id},
+                success:function (data) {
+                    alert("通过审核成功");
+                    location.href="/boss/bossShow";
+                },error:function () {
+                    alert("审核失败");
+                }
+            })
+        }
+    }
+    function nosh(id) {
+        if(confirm("确定拒绝入驻吗?")){
+            $.ajax({
+                url:"/boss/nosh",
+                type:"get",
+                data:{"id":id},
+                success:function (data) {
+                    alert("拒绝入驻成功");
+                    location.href="/boss/bossShow";
+                },error:function () {
+                    alert("审核失败");
+                }
+            })
+        }
+    }
+</script>
+</html>

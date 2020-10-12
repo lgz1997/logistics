@@ -12,6 +12,8 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.FreightcalculationMapper;
+import com.ytc.model.Freightcalculation;
+import com.ytc.model.Suser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,4 +31,19 @@ public class FreightcalculationServiceImpl implements FreightcalculationService{
 
     @Autowired
     private FreightcalculationMapper freightcalculationMapper;
+
+    @Override
+    public Freightcalculation sel(Suser suser) {
+        return freightcalculationMapper.sel(suser);
+    }
+
+    @Override
+    public void upf(Freightcalculation freightcalculation) {
+        freightcalculationMapper.upf(freightcalculation);
+    }
+
+    @Override
+    public void add(Integer id) {
+        freightcalculationMapper.add(id);
+    }
 }

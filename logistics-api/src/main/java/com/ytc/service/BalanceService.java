@@ -25,4 +25,6 @@ public interface BalanceService {
     Balance select(int suserid);
 
     void tixian(Integer suserid, Double money);
+
+    void add(Integer id);
 }

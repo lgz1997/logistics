@@ -7,4 +7,15 @@
     <result column="suserid" property="suserid" jdbcType="INTEGER" />
   </resultMap>
 
+  <select id="select" resultMap="BaseResultMap">
+     select * from balance where suserid=#{suserid}
+  </select>
+
+  <update id="tixian">
+    update balance set balanceprice=balanceprice-#{money} where suserid=#{suserid}
+  </update>
+
+  <insert id="add">
+    insert into balance values(balanceid,0,#{id});
+  </insert>
 </mapper>
