@@ -61,9 +61,6 @@ public class CuserController {
     private SuserService suserService;
 
     @Reference
-    private  DrawService drawService;
-
-    @Reference
     private BalanceService balanceService;
 
     @Reference
