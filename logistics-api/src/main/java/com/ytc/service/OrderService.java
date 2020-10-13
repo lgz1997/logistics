@@ -27,4 +27,6 @@ public interface OrderService {
     PageUtil<Order> select(Order o,PageUtil<Order> page);
 
     Order details(Integer id);
+
+    void pztuidan(Integer id);
 }

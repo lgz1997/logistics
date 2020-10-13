@@ -17,4 +17,8 @@
   <insert id="add">
     insert into balance values(balanceid,0,#{id});
   </insert>
+
+  <update id="tuidan">
+    update balance set balanceprice=balanceprice-#{price} where suserid=#{suserid}
+  </update>
 </mapper>

@@ -47,4 +47,9 @@ public class BillServiceImpl implements BillService{
         page.setList(list);
         return page;
     }
+
+    @Override
+    public void tuidan(Bill bill) {
+        billMapper.tuidan(bill);
+    }
 }

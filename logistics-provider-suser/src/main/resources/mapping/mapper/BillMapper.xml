@@ -18,4 +18,7 @@
   <insert id="water">
     insert into bill values(billid,#{b.billdealid},sysdate(),3,#{b.billprice},#{b.suserid})
   </insert>
+  <insert id="tuidan">
+    insert into bill values(billid,#{b.billdealid},sysdate(),2,#{b.billprice},#{b.suserid})
+  </insert>
 </mapper>

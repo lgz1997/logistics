@@ -27,4 +27,6 @@ public interface BalanceService {
     void tixian(Integer suserid, Double money);
 
     void add(Integer id);
+
+    void tuidan(Integer suserid, Double price);
 }

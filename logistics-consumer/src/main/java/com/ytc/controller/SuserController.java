@@ -206,6 +206,22 @@ public class SuserController {
         billService.water(bill);
     }
 
+    @RequestMapping("pztuidan")
+    @ResponseBody
+    public void pztuidan(Integer id,Double price,HttpServletRequest request){
+        Suser suser=(Suser) request.getSession().getAttribute("suser");
+        orderService.pztuidan(id);
+        balanceService.tuidan(suser.getSuserid(),price);
+        RandomIDUtil ra=new RandomIDUtil();
+        Long ids= ra.nextId();
+        String str="XL"+ids;
+        Bill bill=new Bill();
+        bill.setSuserid(suser.getSuserid());
+        bill.setBilldealid(str);
+        bill.setBillprice(price);
+        billService.tuidan(bill);
+    }
+
 
     @RequestMapping("suserLogin")
     @ResponseBody
