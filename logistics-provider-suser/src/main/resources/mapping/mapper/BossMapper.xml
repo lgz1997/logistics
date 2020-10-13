@@ -7,4 +7,15 @@
     <result column="bosspwd" property="bosspwd" jdbcType="VARCHAR" />
   </resultMap>
 
+  <select id="bossLogin" resultMap="BaseResultMap" >
+    select * from boss where bossname = #{boss.bossname}
+  </select>
+
+  <select id="queryBossByName" parameterType="com.ytc.model.Boss" resultMap="BaseResultMap" >
+    select * from boss where bossname = #{boss.bossname}
+  </select>
+
+  <insert id="reg">
+    insert into boss values (bossid,#{boss.bossname}, #{boss.bosspwd})
+  </insert>
 </mapper>

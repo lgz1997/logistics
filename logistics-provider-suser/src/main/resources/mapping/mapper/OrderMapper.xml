@@ -99,4 +99,8 @@
     left join order_accept a on ord.orderid=a.orderid
     <include refid="tjsel"></include>
   </select>
+
+  <update id="pztuidan">
+    update `order` set orderstatus=3 where orderid=#{id}
+  </update>
 </mapper>

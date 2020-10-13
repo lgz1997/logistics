@@ -39,5 +39,64 @@
       <result column="orderid" property="orderid" jdbcType="INTEGER" />
     </association>
   </resultMap>
+     <sql id="tjsel">
+       <where>
+         <if test="o.ordercard!=null and o.ordercard!=''">
+            and ord.ordercard=#{o.ordercard}
+         </if>
 
+         <if test="o.shipper!=null and o.shipper!=''">
+         and ord.shipper=#{o.shipper}
+         </if>
+
+         <if test="o.shipperiphone!=null and o.shipperiphone!=''">
+           and ord.shipperiphone=#{o.shipperiphone}
+         </if>
+
+         <if test="o.freight!=null">
+           <if test="o.freight.freightstatus!=null and o.freight.freightstatus!=0">
+             and f.freightstatus=#{o.freight.freightstatus}
+           </if>
+         </if>
+
+         <if test="o.shipperaddress!=null and o.shipperaddress!=''">
+           and ord.shipperaddress like '%${o.shipperaddress}%'
+         </if>
+
+         <if test="o.consigneeaddress!=null and o.consigneeaddress!=''">
+           and ord.consigneeaddress like '%${o.consigneeaddress}%'
+         </if>
+         <if test="o.suserid!=null and o.suserid!=''">
+           and ord.suserid=#{o.suserid}
+         </if>
+       </where>
+     </sql>
+
+  <select id="select" resultMap="BaseResultMap">
+    select * from `order` ord
+    left join order_harvest h on ord.orderid=h.orderid
+    left join order_goods g on ord.orderid=g.orderid
+    left join order_freight f on ord.orderid=f.orderid
+    left join order_accept a on ord.orderid=a.orderid
+    <include refid="tjsel"></include>
+    order by ord.orderdate desc
+    limit #{start},#{pageSize}
+  </select>
+  <select id="details" resultMap="BaseResultMap">
+    select * from `order` ord
+    left join order_harvest h on ord.orderid=h.orderid
+    left join order_goods g on ord.orderid=g.orderid
+    left join order_freight f on ord.orderid=f.orderid
+    left join order_accept a on ord.orderid=a.orderid
+    where ord.orderid=#{id}
+  </select>
+
+  <select id="selectCount" resultType="long">
+    select count(*) from `order` ord
+    left join order_harvest h on ord.orderid=h.orderid
+    left join order_goods g on ord.orderid=g.orderid
+    left join order_freight f on ord.orderid=f.orderid
+    left join order_accept a on ord.orderid=a.orderid
+    <include refid="tjsel"></include>
+  </select>
 </mapper>

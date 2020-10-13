@@ -47,4 +47,14 @@
   <delete id="del">
     delete from s_user where susername = #{suser.susername}
   </delete>
+
+  <select id="sel" resultMap="BaseResultMap">
+    select * from s_user
+  </select>
+  <update id="sh">
+    update s_user set suserstatus=1 where suserid=#{id}
+  </update>
+  <update id="nosh">
+    update s_user set suserstatus=2 where suserid=#{id}
+  </update>
 </mapper>

@@ -10,6 +10,8 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Boss;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -20,4 +22,11 @@ package com.ytc.service;
  */
 public interface BossService {
 
+    Boss bossLogin(Boss boss);
+
+    void reg(Boss boss);//112去impl
+
+    void del(Boss boss);
+
+    Boss queryBossByName(Boss boss);
 }

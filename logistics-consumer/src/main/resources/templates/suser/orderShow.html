@@ -15,6 +15,7 @@
         <td>收货地</td>
         <td>发货人</td>
         <td>发货人电话</td>
+        <td>订单状态</td>
         <td><a>订单详情</a></td>
     </tr>
     <tr th:each="o:${page.list}">
@@ -24,7 +25,12 @@
         <td th:text="${o.consigneeaddress}">收货地</td>
         <td th:text="${o.shipper}">发货人</td>
         <td th:text="${o.shipperiphone}">发货人电话</td>
-        <td><a href="#" th:onclick="'javascript:details('+${o.orderid}+')'">订单详情</a></td>
+        <td th:if="${o.orderstatus==1}">正常</td>
+        <td th:if="${o.orderstatus==2}">申请退单</td>
+        <td th:if="${o.orderstatus==3}">已退单</td>
+        <td><a href="#" th:onclick="details([[${o.orderid}]])">订单详情</a>
+          <a th:if="${o.orderstatus==2}"><input type="button" value="批准退单" th:onclick="pztuidan([[${o.orderid}]],[[${o.freight.freightprice}]])"></a>
+        </td>
     </tr>
 </table>
 <div th:replace="page::html"/>
@@ -32,6 +38,18 @@
 <script>
     function details(id){
         location.href="/suser/details?id="+id;
+    }
+    function pztuidan(id,price){
+        $.ajax({
+            url:"/suser/pztuidan",
+            type:"post",
+            data:{"id":id,"price":price},
+            success:function (data){
+                location.href="/suser/toOrderShow";
+            },error:function (){
+                alert("批准退单失败");
+            }
+        })
     }
 </script>
 </html>

@@ -26,4 +26,6 @@ public interface FreightcalculationService {
     Freightcalculation sel(Suser suser);
 
     void upf(Freightcalculation freightcalculation);
+
+    void add(Integer id);
 }

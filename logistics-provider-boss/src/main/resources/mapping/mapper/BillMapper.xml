@@ -9,5 +9,13 @@
     <result column="billprice" property="billprice" jdbcType="DOUBLE" />
     <result column="suserid" property="suserid" jdbcType="INTEGER" />
   </resultMap>
-
+  <select id="selectCount" resultType="long">
+    select count(*) from bill where suserid=#{suserid}
+  </select>
+<select id="select" resultMap="BaseResultMap">
+  select * from bill where suserid=#{suserid}  order by billdate desc limit #{start},#{pageSize}
+</select>
+  <insert id="water">
+    insert into bill values(billid,#{b.billdealid},sysdate(),3,#{b.billprice},#{b.suserid})
+  </insert>
 </mapper>

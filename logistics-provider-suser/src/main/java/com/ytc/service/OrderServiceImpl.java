@@ -48,4 +48,9 @@ public class OrderServiceImpl implements OrderService{
     public Order details(Integer id) {
         return orderMapper.details(id);
     }
+
+    @Override
+    public void pztuidan(Integer id) {
+        orderMapper.pztuidan(id);
+    }
 }

@@ -16,6 +16,8 @@ import com.ytc.model.Suser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -49,5 +51,20 @@ public class SuserServiceImpl implements SuserService{
     @Override
     public void del(Suser suser) {
         suserMapper.del(suser);
+    }
+
+    @Override
+    public List<Suser> sel() {
+        return suserMapper.sel();
+    }
+
+    @Override
+    public void sh(Integer id) {
+        suserMapper.sh(id);
+    }
+
+    @Override
+    public void nosh(Integer id) {
+        suserMapper.nosh(id);
     }
 }

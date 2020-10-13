@@ -12,6 +12,7 @@ package com.ytc.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.ytc.mapper.BossMapper;
+import com.ytc.model.Boss;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,4 +30,23 @@ public class BossServiceImpl implements BossService{
 
     @Autowired
     private BossMapper bossMapper;
+
+    @Override
+    public Boss bossLogin(Boss boss) {
+        return bossMapper.bossLogin(boss);
+    }
+
+    public void reg(Boss boss) {
+        bossMapper.reg(boss);
+    }
+
+    @Override
+    public void del(Boss boss) {
+        bossMapper.del(boss);
+    }
+
+    @Override
+    public Boss queryBossByName(Boss boss) {
+        return bossMapper.queryBossByName(boss);
+    }
 }

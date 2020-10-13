@@ -12,4 +12,6 @@ public interface BillMapper {
     long selectCount(@Param("suserid")Integer suserid);
 
     List<Bill> select(@Param("suserid")Integer suserid, @Param("start")int start, @Param("pageSize")int pageSize);
+
+    void tuidan(@Param("b")Bill bill);
 }

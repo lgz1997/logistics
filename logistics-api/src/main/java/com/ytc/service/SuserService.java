@@ -12,6 +12,8 @@ package com.ytc.service;
 
 import com.ytc.model.Suser;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -30,4 +32,10 @@ public interface SuserService {
     void reg(Suser suser);//112去impl
 
     void del(Suser suser);
+
+    List<Suser> sel();
+
+    void sh(Integer id);
+
+    void nosh(Integer id);
 }

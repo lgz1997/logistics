@@ -7,5 +7,10 @@
     <result column="noacceptwhy" property="noacceptwhy" jdbcType="VARCHAR" />
     <result column="orderid" property="orderid" jdbcType="INTEGER" />
   </resultMap>
-
+<update id="accept">
+  update order_accept set acceptstatus=1 where orderid=#{id}
+</update>
+  <update id="noaccept">
+  update order_accept set acceptstatus=2,noacceptwhy=#{idea} where orderid=#{id}
+</update>
 </mapper>

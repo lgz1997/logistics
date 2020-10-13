@@ -41,4 +41,9 @@ public class FreightcalculationServiceImpl implements FreightcalculationService{
     public void upf(Freightcalculation freightcalculation) {
         freightcalculationMapper.upf(freightcalculation);
     }
+
+    @Override
+    public void add(Integer id) {
+        freightcalculationMapper.add(id);
+    }
 }

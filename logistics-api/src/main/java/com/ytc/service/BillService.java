@@ -28,4 +28,6 @@ public interface BillService {
     void water(Bill bill);
 
     PageUtil<Bill> select(Integer suserid, PageUtil<Bill> page);
+
+    void tuidan(Bill bill);
 }

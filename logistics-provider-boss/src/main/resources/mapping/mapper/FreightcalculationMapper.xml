@@ -15,6 +15,7 @@
     <result column="suserid" property="suserid" jdbcType="INTEGER" />
   </resultMap>
 
+
   <select id="sel" resultMap="BaseResultMap">
     select * from freightcalculation where suserid=#{s.suserid}
   </select>
@@ -25,4 +26,8 @@
     three1=#{f.three1},three2=#{f.three2},threeprice=#{f.threeprice}
     where suserid=#{f.suserid}
   </update>
+
+  <insert id="add">
+    insert into freightcalculation values (calculationid,0,0,0,0,0,0,0,0,0,#{id})
+  </insert>
 </mapper>
