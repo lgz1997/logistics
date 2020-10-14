@@ -20,4 +20,5 @@ package com.ytc.service;
  */
 public interface HarvestService {
 
+    void shouHuo(Integer orderid);
 }

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+<a href="/cuser/backB">上一页</a>
+    <form id="sendForm">
+            <h3>寄件人信息</h3>
+        姓名：<input type="text" name="shipper">
+        <br>
+        电话号码：<input type="text" name="shipperiphone">
+        <br>
+        所属地区：
+        <br>
+        省：
+        <select name="province1" id="provinve1" onchange="getShi()">
+            <option value="">请选择</option>
+        </select>
+        市：
+        <select name="city1" id="city1">
+            <option value="">请选择</option>
+        </select>
+        <br>
+        详细地址：<input type="text" name="address1">
+        <br>
+        物流公司：
+        <select name="suserid" id="suserid" onchange="queryCalculation()">
+            <option value=""></option>
+    </select>
+        <br>
+        货物名称：<input type="text" name="goods.goodsname">
+        <br>
+        货物件数：<input type="text" name="goods.goodscount"><br>
+        重量：
+        <input type="radio" name="goods.goodsweight" value="1" onclick="jiSuan()">1千克
+        <input type="radio" name="goods.goodsweight"  value="2" onclick="jiSuan()">2千克
+        <input type="radio" name="goods.goodsweight" value="3" onclick="jiSuan()">3千克
+        <input type="radio" name="goods.goodsweight" value="4" onclick="Weight()">其他<span id="sp1"></span>
+        <br>
+        <br>
+        运费：<input type="text" name="freight.freightprice" id="freightprice" readonly="readonly"><span id="sp2"></span>
+        <br>
+        <hr>
+        <h3>收件人信息</h3>
+        姓名：<input type="text" name="consignee">
+        <br>
+        电话号码：<input type="text" name="consigneeiphone">
+        <br>
+        所属地区：<br>
+        省：
+        <select name="province2" id="provinve2" onchange="getShi1()">
+            <option value="">请选择</option>
+        </select>
+        市：
+        <select name="city2" id="city2">
+            <option value="">请选择</option>
+        </select>
+        <br>
+        详细地址：<input type="text" name="address2">
+        <br><br><br>
+        <input type="button" value="生成订单" onclick="addSend()">
+    </form>
+</body>
+<script>
+
+
+    function Weight(){
+        $("#sp1").html("<input type='text' name='goodsWeight' id='goodsWeight' onblur='jiSuan()'>");
+    }
+    $(function () {
+        queryAdress();
+        queryCity();
+        querySuser();
+
+    })
+
+    var cal = null;
+    function queryCalculation() {
+        var id=$("#suserid").val();
+       if(id!=null && id!=""){
+           var suserid = $("#suserid").val();
+           $.ajax({
+               url:"/cuser/queryCalculation",
+               data:{"suserid":suserid},
+               type: "get",
+               dataType: "json",
+               success:function (data) {
+                   cal=data;
+               },error:function () {
+                   alert("查询运费计算失败");
+               }
+           })
+       }
+
+    }
+
+    function jiSuan() {
+        $("input[name='goods.goodsweight']").each(function () {
+            if ($(this).prop("checked")){
+                var weight = $(this).val();
+                var x=0;
+                var price=0;
+                if(weight==1){
+                    x=1;
+                }
+                if(weight==2){
+                    x=2;
+                }
+                if(weight==3){
+                    x=3;
+                }
+                if(weight==4){
+                    x = $("#goodsWeight").val();
+                }
+                if(x<=cal.one2){
+                    price=x*cal.oneprice;
+                }
+                if(x<=cal.two2&&x>cal.two1){
+                    price=x*cal.twoprice;
+                }if(x>cal.three1){
+                    price=x*cal.threeprice;
+                }
+                    $("#freightprice").val(price);
+            }
+        })
+    }
+    function querySuser() {
+        $.ajax({
+            url:"/cuser/querySuser",
+            type: "get",
+            dataType: "json",
+            success:function (data) {
+                var str = "<option value=''>请选择</option>";
+                for (var i = 0;i<data.length;i++){
+                    str+="<option value='"+data[i].suserid+"'>"+data[i].compoayname+"</option>";
+                }
+                $("#suserid").html(str);
+
+            },error:function () {
+                alert("查询物流失败");
+            }
+        })
+    }
+
+    function queryAdress() {
+        $.ajax({
+            url:"/cuser/queryAdress",
+            type: "get",
+            dataType: "json",
+            success:function (data) {
+                var str = "<option value=''>请选择</option>";
+                for(var i = 0;i<data.length;i++){
+                    str+="<option value='"+data[i].provinceid+"'>"+data[i].provincename+"</option>";
+                }
+                $("#provinve1").html(str);
+                $("#provinve2").html(str);
+
+            },error:function () {
+                alert("查询省失败");
+            }
+        })
+    }
+    var city = null;
+    function queryCity() {
+        $.ajax({
+            url:"/cuser/queryCity",
+            type: "get",
+            dataType: "json",
+            success:function (data) {
+                city = data;
+            },error:function () {
+                alert("查询市失败");
+            }
+        })
+    }
+
+    function getShi() {
+        var str = "<option value=''>请选择</option>";
+       var provinve1 = $("#provinve1").val();
+       for (var i = 0;i<city.length;i++){
+           if(city[i].provinceid==provinve1){
+               str+="<option value='"+city[i].cityid+"'>"+city[i].cityname+"</option>";
+           }
+           $("#city1").html(str);
+       }
+    }
+
+    function getShi1() {
+        var str = "<option value=''>请选择</option>";
+        var provinve2 = $("#provinve2").val();
+        for (var i = 0;i<city.length;i++){
+            if(city[i].provinceid==provinve2){
+                str+="<option value='"+city[i].cityid+"'>"+city[i].cityname+"</option>";
+            }
+            $("#city2").html(str);
+        }
+    }
+    function addSend() {
+        $.ajax({
+            url:"/cuser/addSendCuser",
+            type:"post",
+            data:$("#sendForm").serialize(),
+            success:function(data){
+                alert("成功");
+                location.href="/cuser/orderSuccess";
+            },error:function(){
+                alert("失败");
+            }
+        })
+
+    }
+</script>
+</html>

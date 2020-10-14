@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+
+<form id="sendForm">
+    <table border="1">
+        <tr>
+            <td>订单号</td>
+            <td>物品名称</td>
+            <td>下单时间</td>
+            <td>快递公司</td>
+            <td>发货状态</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="o:${list}">
+            <td th:text="${o.ordercard}">订单号></td>
+            <td th:text="${o.goods.goodsname}">物品名称</td>
+            <td th:text="${o.orderdate}">下单时间</td>
+            <td>
+                <input type="hidden" th:id="${o.orderid}" th:value="${o.freight.freightprice}">
+                <input type="hidden" th:id="${o.orderid}+h" th:value="${o.suserid}">
+                <a th:each="s:${suser}">
+                    <a th:if="${o.suserid==s.suserid}">
+                        <a th:text="${s.compoayname}"></a>
+                    </a>
+                </a>
+            </td>
+            <td th:if="${o.accept.acceptstatus==0}">未受理</td>
+            <td th:if="${o.accept.acceptstatus==1}">已发货</td>
+            <td th:if="${o.accept.acceptstatus==2}">拒绝受理,原因:<a th:text="${o.accept.noacceptwhy}"></a></td>
+
+            <td th:if="${o.freight.freightstatus==0}">
+                <a th:if="${o.orderstatus==1}"><input type="button" value="支付" th:onclick="'javascript:zhifu('+${o.orderid}+')'"><input type="button" value="退单" th:onclick="'javascript:tuidan('+${o.orderid}+')'"></a>
+                <a th:if="${o.orderstatus==2}"><input type="button" value="退单审核中"  disabled="disabled"></a><a th:if="${o.orderstatus==3}"><input type="button" value="退单成功" disabled="disabled"></a></td>
+
+            <td th:if="${o.accept.acceptstatus==0 and o.freight.freightstatus==1}">
+            <a th:if="${o.orderstatus==1}"><input type="button" value="收货" disabled="disabled"><input type="button" value="退单" th:onclick="'javascript:tuidan('+${o.orderid}+')'"></a>
+            <a th:if="${o.orderstatus==2}"><input type="button" value="退单审核中"  disabled="disabled"></a><a th:if="${o.orderstatus==3}"><input type="button" value="退单成功" disabled="disabled"></a></td>
+
+            <td th:if="${o.accept.acceptstatus==1 and o.harvest.harveststatus==0 and o.freight.freightstatus==1}">
+                <a th:if="${o.orderstatus==1}"><input type="button" value="收货" th:onclick="'javascript:shouHuo('+${o.orderid}+')'"><input type="button" value="退单" th:onclick="'javascript:tuidan('+${o.orderid}+')'"></a>
+                <a th:if="${o.orderstatus==2}"><input type="button" value="退单审核中"  disabled="disabled"></a><a th:if="${o.orderstatus==3}"><input type="button" value="退单成功" disabled="disabled"></a></td>
+
+            <td th:if="${o.accept.acceptstatus==1 and o.harvest.harveststatus==1 and o.freight.freightstatus==1}"><input type="button" value="已收货" disabled="disabled"></td>
+
+            <td th:if="${o.accept.acceptstatus==2 and o.freight.freightstatus==1}">
+                <a th:if="${o.orderstatus==1}"><input type="button" value="收货" disabled="disabled"><input type="button" value="退单" th:onclick="'javascript:tuidan('+${o.orderid}+')'"></a>
+                <a th:if="${o.orderstatus==2}"><input type="button" value="退单审核中" disabled="disabled"></a><a th:if="${o.orderstatus==3}"><input type="button" value="退单成功" disabled="disabled"></a></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+<script>
+    function shouHuo(orderid) {
+        $.ajax({
+            url:"/cuser/shouHuo",
+            data:{"orderid":orderid},
+            type: "get",
+            success:function (data) {
+                location.href="/cuser/queryCuserSend";
+            },error:function () {
+                alert("收货失败");
+            }
+        })
+    }
+
+    function zhifu(orderid) {
+        var price = $("#"+orderid).val();
+        var suserid = $("#"+orderid+"h").val();
+        $.ajax({
+            url:"/cuser/zhifu",
+            data:{"orderid":orderid,"price":price,"suserid":suserid},
+            type: "get",
+            success:function (data) {
+                location.href="/cuser/queryCuserSend";
+            },error:function () {
+                alert("支付失败");
+            }
+        })
+    }
+
+    function tuidan(orderid) {
+        $.ajax({
+            url:"/cuser/tuidan",
+            data:{"orderid":orderid},
+            type: "get",
+            success:function (data) {
+                location.href="/cuser/queryCuserSend";
+            },error:function () {
+                alert("退单申请失败");
+            }
+        })
+    }
+</script>
+</html>

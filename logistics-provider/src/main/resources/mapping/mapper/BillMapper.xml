@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.BillMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Bill" >
+    <id column="billid" property="billid" jdbcType="INTEGER" />
+    <result column="billdealid" property="billdealid" jdbcType="VARCHAR" />
+    <result column="billdate" property="billdate" jdbcType="TIMESTAMP" />
+    <result column="billtype" property="billtype" jdbcType="INTEGER" />
+    <result column="billprice" property="billprice" jdbcType="DOUBLE" />
+    <result column="suserid" property="suserid" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectCount" resultType="long">
+    select count(*) from bill where suserid=#{suserid}
+  </select>
+
+  <select id="select" resultMap="BaseResultMap">
+     select * from bill where suserid=#{suserid}  order by billdate desc limit #{start},#{pageSize}
+  </select>
+
+  <insert id="water">
+     insert into bill values(billid,#{b.billdealid},sysdate(),3,#{b.billprice},#{b.suserid})
+  </insert>
+
+  <insert id="tuidan">
+     insert into bill values(billid,#{b.billdealid},sysdate(),2,#{b.billprice},#{b.suserid})
+  </insert>
+
+  <insert id="shouhuo">
+     insert into bill values (billid,#{billdealid},sysdate(),1,#{price},#{suserid});
+  </insert>
+</mapper>

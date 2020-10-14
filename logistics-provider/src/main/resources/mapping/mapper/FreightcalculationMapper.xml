@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.FreightcalculationMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Freightcalculation" >
+    <id column="calculationid" property="calculationid" jdbcType="INTEGER" />
+    <result column="one1" property="one1" jdbcType="DOUBLE" />
+    <result column="one2" property="one2" jdbcType="DOUBLE" />
+    <result column="oneprice" property="oneprice" jdbcType="DOUBLE" />
+    <result column="two1" property="two1" jdbcType="DOUBLE" />
+    <result column="two2" property="two2" jdbcType="DOUBLE" />
+    <result column="twoprice" property="twoprice" jdbcType="DOUBLE" />
+    <result column="three1" property="three1" jdbcType="DOUBLE" />
+    <result column="three2" property="three2" jdbcType="DOUBLE" />
+    <result column="threeprice" property="threeprice" jdbcType="DOUBLE" />
+    <result column="suserid" property="suserid" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="sel" resultMap="BaseResultMap">
+    select * from freightcalculation where suserid=#{s.suserid}
+  </select>
+
+  <update id="upf">
+    update freightcalculation set one1=#{f.one1},one2=#{f.one2},oneprice=#{f.oneprice},
+    two1=#{f.two1},two2=#{f.two2},twoprice=#{f.twoprice},
+    three1=#{f.three1},three2=#{f.three2},threeprice=#{f.threeprice}
+    where suserid=#{f.suserid}
+  </update>
+
+  <insert id="add">
+    insert into freightcalculation values (calculationid,0,0,0,0,0,0,0,0,0,#{id})
+  </insert>
+
+  <select id="queryCalculation" resultMap="BaseResultMap">
+     select * from freightcalculation where suserid=#{suserid}
+  </select>
+</mapper>

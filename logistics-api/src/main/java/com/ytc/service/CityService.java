@@ -27,4 +27,6 @@ public interface CityService {
     List<City> selectCity();
 
     City selectCityname(Integer address2);
+
+    List<City> queryCity();
 }

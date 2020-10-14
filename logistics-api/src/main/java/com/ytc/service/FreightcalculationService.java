@@ -28,4 +28,6 @@ public interface FreightcalculationService {
     void upf(Freightcalculation freightcalculation);
 
     void add(Integer id);
+
+    Freightcalculation queryCalculation(Integer suserid);
 }

@@ -29,7 +29,7 @@
         <td th:if="${o.orderstatus==2}">申请退单</td>
         <td th:if="${o.orderstatus==3}">已退单</td>
         <td><a href="#" th:onclick="details([[${o.orderid}]])">订单详情</a>
-          <a th:if="${o.orderstatus==2}"><input type="button" value="批准退单" th:onclick="pztuidan([[${o.orderid}]],[[${o.freight.freightprice}]])"></a>
+          <a th:if="${o.orderstatus==2}"><input type="button" value="批准退单" th:onclick="pztuidan([[${o.orderid}]],[[${o.freight.freightprice}]],[[${o.freight.freightstatus}]])"></a>
         </td>
     </tr>
 </table>
@@ -39,11 +39,11 @@
     function details(id){
         location.href="/suser/details?id="+id;
     }
-    function pztuidan(id,price){
+    function pztuidan(id,price,freightstatus){
         $.ajax({
             url:"/suser/pztuidan",
             type:"post",
-            data:{"id":id,"price":price},
+            data:{"id":id,"price":price,"freightstatus":freightstatus},
             success:function (data){
                 location.href="/suser/toOrderShow";
             },error:function (){

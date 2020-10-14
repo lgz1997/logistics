@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.CuserMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Cuser" >
+    <id column="cuserid" property="cuserid" jdbcType="INTEGER" />
+    <result column="cusername" property="cusername" jdbcType="VARCHAR" />
+    <result column="cuserpwd" property="cuserpwd" jdbcType="VARCHAR" />
+    <result column="cuseriphone" property="cuseriphone" jdbcType="VARCHAR" />
+    <result column="cusercard" property="cusercard" jdbcType="VARCHAR" />
+    <result column="cuserbankname" property="cuserbankname" jdbcType="VARCHAR" />
+    <result column="cuserbankid" property="cuserbankid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryCuserName" resultMap="BaseResultMap">
+    select * from c_user
+    where cusername=#{cuser.cusername}
+  </select>
+
+  <insert id="AddCuser" parameterType="com.ytc.model.Cuser">
+    insert into c_user(cusername,cuserpwd,cuseriphone,cusercard,cuserbankname,cuserbankid)
+    values(#{cuser.cusername,jdbcType=VARCHAR},#{cuser.cuserpwd,jdbcType=VARCHAR},
+    #{cuser.cuseriphone,jdbcType=VARCHAR},#{cuser.cusercard,jdbcType=VARCHAR},
+    #{cuser.cuserbankname,jdbcType=VARCHAR},#{cuser.cuserbankid,jdbcType=VARCHAR})
+  </insert>
+</mapper>

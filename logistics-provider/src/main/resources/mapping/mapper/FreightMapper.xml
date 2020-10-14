@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.FreightMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Freight" >
+    <id column="freightid" property="freightid" jdbcType="INTEGER" />
+    <result column="freightprice" property="freightprice" jdbcType="DOUBLE" />
+    <result column="freightstatus" property="freightstatus" jdbcType="INTEGER" />
+    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+  </resultMap>
+
+  <insert id="addSendCuser">
+    insert into order_freight values (freightid,#{order.freight.freightprice},0,#{order.orderid})
+  </insert>
+
+  <update id="zhifu">
+    update order_freight set freightstatus=1 where orderid=#{orderid}
+  </update>
+</mapper>
