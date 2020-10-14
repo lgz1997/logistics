@@ -6,13 +6,29 @@
 </head>
 <script src="../js/jquery.min.js"></script>
 <body>
+</br></br></br></br></br></br></br></br>
+<center>
+    <h2 style="color: blue">承运商登录</h2>
 <form id="loginForm">
-    用户名：<input type="text" id="bossname" name="bossname"><span id="sp1"></span><br>
-    密码:<input type="password" id="bosspwd" name="bosspwd"><span id="sp2"></span><br>
-    验证码:<input type="text" id="imgcode" name="imgcode">
-    <img src="/boss/imgCode" id="imgCode"><span id="sp3"></span><br>
+    <table border="1">
+        <tr>
+            <td><font th:size="5">用户名:</font></td>
+            <td><input type="text" id="bossname" name="bossname"><span id="sp1"></span></td>
+        </tr>
+        <tr>
+            <td><font th:size="5">密码:</font></td>
+            <td><input type="password" id="bosspwd" name="bosspwd"><span id="sp2"></span></td>
+        </tr>
+        <tr>
+            <td><font th:size="5">验证码:</font></td>
+            <td><input type="text" id="imgcode" name="imgcode">
+                <img src="/boss/imgCode" id="imgCode"><span id="sp3"></span></td>
+        </tr>
+    </table>
     <input type="button" value="登录" onclick="bossLogin()">
-    <input type="button" value="注册" onclick="reg()"><!--101写完去con-->
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="注册" onclick="reg()">
+</center>
 </form>
 
 </body>

@@ -6,15 +6,30 @@
 </head>
 <script src="../js/jquery.min.js"></script>
 <body>
+</br></br></br></br></br></br></br></br>
+<center>
+    <h2 style="color: blue">入驻物流登录</h2>
 <form id="loginForm">
-    用户名：<input type="text" id="susername" name="susername"><span id="sp1"></span><br>
-    密码:<input type="password" id="suserpwd" name="suserpwd"><span id="sp2"></span><br>
-    验证码:<input type="text" id="imgcode" name="imgcode">
-    <img src="/suser/imgCode" id="imgCode"><span id="sp3"></span><br>
+    <table border="1">
+        <tr>
+            <td>用户名:</td>
+            <td><input type="text" id="susername" name="susername"><span id="sp1"></span></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input type="password" id="suserpwd" name="suserpwd"><span id="sp2"></span></td>
+        </tr>
+        <tr>
+            <td>验证码:</td>
+            <td><input type="text" id="imgcode" name="imgcode">
+                <img src="/suser/imgCode" id="imgCode"><span id="sp3"></span></td>
+        </tr>
+    </table>
     <input type="button" value="登录" onclick="suserLogin()">
-    <input type="button" value="申请入驻" onclick="reg()"><!--101写完去con-->
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="申请入驻" onclick="reg()">
 </form>
-
+</center>
 </body>
 <script>
     $("#imgCode").click(function(){
