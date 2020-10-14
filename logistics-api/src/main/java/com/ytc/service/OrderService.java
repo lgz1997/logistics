@@ -10,8 +10,11 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Cuser;
 import com.ytc.model.Order;
 import com.ytc.util.PageUtil;
+
+import java.util.List;
 
 
 /**
@@ -29,4 +32,10 @@ public interface OrderService {
     Order details(Integer id);
 
     void pztuidan(Integer id);
+
+    void addSendCuser(Order order);
+
+    List<Order> queryCuserSend(Cuser cuser);
+
+    void tuidan(Integer orderid);
 }

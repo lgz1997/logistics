@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Order" >
+    <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="ordercard" property="ordercard" jdbcType="VARCHAR" />
+    <result column="shipper" property="shipper" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="shipperiphone" property="shipperiphone" jdbcType="VARCHAR" />
+    <result column="consigneeiphone" property="consigneeiphone" jdbcType="VARCHAR" />
+    <result column="shipperaddress" property="shipperaddress" jdbcType="VARCHAR" />
+    <result column="consigneeaddress" property="consigneeaddress" jdbcType="VARCHAR" />
+    <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="orderstatus" property="orderstatus" jdbcType="INTEGER" />
+    <result column="suserid" property="suserid" jdbcType="INTEGER" />
+    <result column="cuserid" property="cuserid" jdbcType="INTEGER" />
+    <association property="accept" javaType="com.ytc.model.Accept">
+      <id column="acceptid" property="acceptid" jdbcType="INTEGER" />
+      <result column="acceptstatus" property="acceptstatus" jdbcType="INTEGER" />
+      <result column="noacceptwhy" property="noacceptwhy" jdbcType="VARCHAR" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+    <association property="goods" javaType="com.ytc.model.Goods">
+      <id column="goodsid" property="goodsid" jdbcType="INTEGER" />
+      <result column="goodsname" property="goodsname" jdbcType="VARCHAR" />
+      <result column="goodscount" property="goodscount" jdbcType="INTEGER" />
+      <result column="goodsweight" property="goodsweight" jdbcType="DOUBLE" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+    <association property="harvest" javaType="com.ytc.model.Harvest">
+      <id column="harvestid" property="harvestid" jdbcType="INTEGER" />
+      <result column="harveststatus" property="harveststatus" jdbcType="INTEGER" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+    <association property="freight" javaType="com.ytc.model.Freight">
+      <id column="freightid" property="freightid" jdbcType="INTEGER" />
+      <result column="freightprice" property="freightprice" jdbcType="DOUBLE" />
+      <result column="freightstatus" property="freightstatus" jdbcType="INTEGER" />
+      <result column="orderid" property="orderid" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+     <sql id="tjsel">
+       <where>
+         <if test="o.ordercard!=null and o.ordercard!=''">
+            and ord.ordercard=#{o.ordercard}
+         </if>
+
+         <if test="o.shipper!=null and o.shipper!=''">
+         and ord.shipper=#{o.shipper}
+         </if>
+
+         <if test="o.shipperiphone!=null and o.shipperiphone!=''">
+           and ord.shipperiphone=#{o.shipperiphone}
+         </if>
+
+         <if test="o.freight!=null">
+           <if test="o.freight.freightstatus!=null and o.freight.freightstatus!=-1">
+             and f.freightstatus=#{o.freight.freightstatus}
+           </if>
+         </if>
+
+         <if test="o.shipperaddress!=null and o.shipperaddress!=''">
+           and ord.shipperaddress like '%${o.shipperaddress}%'
+         </if>
+
+         <if test="o.consigneeaddress!=null and o.consigneeaddress!=''">
+           and ord.consigneeaddress like '%${o.consigneeaddress}%'
+         </if>
+         <if test="o.suserid!=null and o.suserid!=''">
+           and ord.suserid=#{o.suserid}
+         </if>
+       </where>
+     </sql>
+
+  <select id="select" resultMap="BaseResultMap">
+    select * from `order` ord
+    left join order_harvest h on ord.orderid=h.orderid
+    left join order_goods g on ord.orderid=g.orderid
+    left join order_freight f on ord.orderid=f.orderid
+    left join order_accept a on ord.orderid=a.orderid
+    <include refid="tjsel"></include>
+    order by ord.orderdate desc
+    limit #{start},#{pageSize}
+  </select>
+
+  <select id="details" resultMap="BaseResultMap">
+    select * from `order` ord
+    left join order_harvest h on ord.orderid=h.orderid
+    left join order_goods g on ord.orderid=g.orderid
+    left join order_freight f on ord.orderid=f.orderid
+    left join order_accept a on ord.orderid=a.orderid
+    where ord.orderid=#{id}
+  </select>
+
+  <select id="selectCount" resultType="long">
+    select count(*) from `order` ord
+    left join order_harvest h on ord.orderid=h.orderid
+    left join order_goods g on ord.orderid=g.orderid
+    left join order_freight f on ord.orderid=f.orderid
+    left join order_accept a on ord.orderid=a.orderid
+    <include refid="tjsel"></include>
+  </select>
+
+  <update id="pztuidan">
+    update `order` set orderstatus=3 where orderid=#{id}
+  </update>
+
+  <insert id="addSendCuser">
+    insert into `order` values (orderid,#{order.ordercard},#{order.shipper},#{order.consignee},#{order.shipperiphone},#{order.consigneeiphone},#{order.shipperaddress},#{order.consigneeaddress},sysdate(),1,#{order.suserid},#{order.cuserid})
+    <selectKey resultType="java.lang.Integer" keyProperty="order.orderid" order="AFTER">
+      select last_insert_id()
+    </selectKey>
+  </insert>
+
+  <select id="queryCuserSend" resultMap="BaseResultMap">
+    SELECT * FROM `order` od
+    LEFT JOIN s_user su ON od.suserid=su.suserid
+    LEFT JOIN order_goods og ON og.orderid=od.orderid
+    LEFT JOIN order_harvest oh on oh.orderid=od.orderid
+    LEFT JOIN order_accept oa on oa.orderid=od.orderid
+    LEFT join order_freight of on od.orderid=of.orderid
+    where od.cuserid=#{cuser.cuserid}
+  </select>
+
+  <update id="tuidan">
+    update `order` set orderstatus=2 where orderid=#{orderid}
+  </update>
+</mapper>

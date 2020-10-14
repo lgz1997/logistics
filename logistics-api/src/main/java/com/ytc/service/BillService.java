@@ -30,4 +30,6 @@ public interface BillService {
     PageUtil<Bill> select(Integer suserid, PageUtil<Bill> page);
 
     void tuidan(Bill bill);
+
+    void shouhuo(Double price, Integer suserid, String billdealid);
 }

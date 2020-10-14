@@ -10,6 +10,8 @@
  */
 package com.ytc.service;
 
+import com.ytc.model.Cuser;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -19,5 +21,9 @@ package com.ytc.service;
  * @since 1.0.0
  */
 public interface CuserService {
+
+    Cuser queryCuserName(Cuser cuser);
+
+    void AddCuser(Cuser cuser);
 
 }

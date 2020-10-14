@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytc.mapper.AcceptMapper" >
+  <resultMap id="BaseResultMap" type="com.ytc.model.Accept" >
+    <id column="acceptid" property="acceptid" jdbcType="INTEGER" />
+    <result column="acceptstatus" property="acceptstatus" jdbcType="INTEGER" />
+    <result column="noacceptwhy" property="noacceptwhy" jdbcType="VARCHAR" />
+    <result column="orderid" property="orderid" jdbcType="INTEGER" />
+  </resultMap>
+
+  <update id="accept">
+     update order_accept set acceptstatus=1 where orderid=#{id}
+  </update>
+
+  <update id="noaccept">
+     update order_accept set acceptstatus=2,noacceptwhy=#{idea} where orderid=#{id}
+  </update>
+
+  <insert id="addSendCuser">
+     insert into order_accept values (acceptid,0,null,#{order.orderid})
+  </insert>
+</mapper>

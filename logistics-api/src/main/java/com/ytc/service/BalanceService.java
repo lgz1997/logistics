@@ -29,4 +29,6 @@ public interface BalanceService {
     void add(Integer id);
 
     void tuidan(Integer suserid, Double price);
+
+    void shouhuo(Double price, Integer suserid);
 }

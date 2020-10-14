@@ -28,4 +28,6 @@ public interface ProvinceService {
     List<Province> selectProvince();
 
     Province selectProvincename(Integer address1);
+
+    List<Province> queryAdress();
 }

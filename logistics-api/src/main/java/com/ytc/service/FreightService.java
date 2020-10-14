@@ -20,4 +20,5 @@ package com.ytc.service;
  */
 public interface FreightService {
 
+    void zhifu(Integer orderid);
 }

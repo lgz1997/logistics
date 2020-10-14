@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../js/jquery.min.js"></script>
+<body>
+</br></br></br>
+<center><h2>用户注册</h2>
+    </br>
+    <form id="registerForm">
+        <table border="1">
+            <tr>
+                <td>用户名</td>
+                <td><input type="text" name="cusername"></td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td><input type="text" name="cuserpwd"></td>
+            </tr>
+            <tr>
+                <td>手机号</td>
+                <td><input type="text" name="cuseriphone"></td>
+            </tr>
+            <tr>
+                <td>身份证号</td>
+                <td><input type="text" name="cusercard"></td>
+            </tr>
+            <tr>
+                <td>银行卡名称</td>
+                <td><input type="text" name="cuserbankname"></td>
+            </tr>
+            <tr>
+                <td>银行卡卡号</td>
+                <td><input type="text" name="cuserbankid"></td>
+            </tr>
+        </table>
+        <input type="button" value="注册" onclick="cuserReg()">
+    </form>
+</center>
+</body>
+<script>
+    function cuserReg() {
+        $.ajax({
+            url:"/cuser/AddCuser",
+            type:"post",
+            data:$("#registerForm").serialize(),
+            success:function (data) {
+                location.href="/cuser/succeReg";
+
+            },error:function () {
+                alert("注册失败");
+
+            }
+        })
+
+    }
+</script>
+</html>

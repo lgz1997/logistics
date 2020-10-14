@@ -38,4 +38,6 @@ public interface SuserService {
     void sh(Integer id);
 
     void nosh(Integer id);
+
+    List<Suser> querySuser();
 }
