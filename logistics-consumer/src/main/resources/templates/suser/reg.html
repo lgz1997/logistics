@@ -6,21 +6,52 @@
 </head>
 <script src="../js/jquery.min.js"></script>
 <body>
-   <h1>欢迎注册</h1><!--103-->
-   <form id="regForm"  ><!--103-->
-      用户名：<input type="text" id="susername" name="susername" onblur="checkName()" placeholder="请输入用户名"><span id="sp1"></span><br>
-      密码：<input type="password" id="suserpwd" name="suserpwd" placeholder="请输入密码"><span id="sp2"></span> <br><!--103-->
-      确认密码:<input type="password" id="suserpwd1"  name="suserpwd1" placeholder="请确认密码"><span id="sp3"></span> <br><!--103-->
-      物流公司名称:<input type="text" id="compoayname" name="compoayname"><span id="sp4"></span><br>
-      物流公司电话 :<input type="text" id="compoayiphone" name="compoayiphone"><span id="sp5"></span><br>
-      物流公司老板姓名:<input type="text" id="compoaybossname" name="compoaybossname"><span id="sp6"></span><br>
-      物流公司地址:<input type="text" id="compoayaddress" name="compoayaddress"><span id="sp7"></span><br>
-      银行卡姓名:<input type="text" id="suserbankname" name="suserbankname"><span id="sp8"></span><br>
-      银行卡卡号:<input type="text" id="suserbankid" name="suserbankid"><span id="sp9"></span><br>
-
-       <input type="button" id="zhuce" value="注册"><!--103-->
-   </form><!--103-->
-                            <!--103写完去con-->
+</br></br></br></br></br></br></br></br>
+<center>
+    <h2 style="color: blue">欢迎入驻</h2>
+   <form id="regForm"  >
+       <table border="1">
+           <tr>
+               <td>用户名:</td>
+               <td><input type="text" id="susername" name="susername" onblur="checkName()" placeholder="请输入用户名"><span id="sp1"></span></td>
+           </tr>
+           <tr>
+               <td>密码:</td>
+               <td><input type="password" id="suserpwd" name="suserpwd" placeholder="请输入密码"><span id="sp2"></span></td>
+           </tr>
+           <tr>
+               <td>确认密码:</td>
+               <td><input type="password" id="suserpwd1"  name="suserpwd1" placeholder="请确认密码"><span id="sp3"></span></td>
+           </tr>
+           <tr>
+               <td>物流公司名称:</td>
+               <td><input type="text" id="compoayname" name="compoayname"><span id="sp4"></span></td>
+           </tr>
+           <tr>
+               <td>物流公司电话:</td>
+               <td><input type="text" id="compoayiphone" name="compoayiphone"><span id="sp5"></span></td>
+           </tr>
+           <tr>
+               <td>物流公司老板姓名:</td>
+               <td><input type="text" id="compoaybossname" name="compoaybossname"><span id="sp6"></span></td>
+           </tr>
+           <tr>
+               <td>物流公司地址:</td>
+               <td><input type="text" id="compoayaddress" name="compoayaddress"><span id="sp7"></span></td>
+           </tr>
+           <tr>
+               <td>银行卡姓名:</td>
+               <td><input type="text" id="suserbankname" name="suserbankname"><span id="sp8"></span></td>
+           </tr>
+           <tr>
+               <td>银行卡卡号:</td>
+               <td><input type="text" id="suserbankid" name="suserbankid"><span id="sp9"></span></td>
+           </tr>
+       </table>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="button" id="zhuce" value="提交入驻申请">
+   </form>
+</center>
 </body>
 <script>
     $("#zhuce").click(function () {
@@ -101,6 +132,5 @@
             $("#sp1").html("<font color='red'>用户名不能为空</font>");
         }
     })
-</script><!--103-->
-
+</script>
 </html>
