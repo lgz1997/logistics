@@ -23,7 +23,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @create 2020/10/15
  * @since 1.0.0
  */
-@Configuration
 public class LoginConfig implements WebMvcConfigurer{
 
     @Override
