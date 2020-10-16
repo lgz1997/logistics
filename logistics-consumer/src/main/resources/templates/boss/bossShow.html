@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <script src="../js/jquery.min.js"></script>
-<body>
+<body background="../jpg/35.jpg">
 <center>
     <h2 style="color: blue">入驻申请:</h2>
 
@@ -42,7 +42,7 @@
 </center>
 </body>
 <script>
-    function sh(id) {
+    function sh(id) {   //通过审核方法
         if(confirm("确定通过审核吗?")){
             $.ajax({
                 url:"/boss/sh",
@@ -57,7 +57,7 @@
             })
         }
     }
-    function nosh(id) {
+    function nosh(id) {  //不通过审核方法
         if(confirm("确定拒绝入驻吗?")){
             $.ajax({
                 url:"/boss/nosh",

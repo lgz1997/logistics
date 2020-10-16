@@ -11,14 +11,12 @@
 package com.ytc.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import com.ytc.controller.util.RandomIDUtil;
 import com.ytc.model.*;
 import com.ytc.service.*;
 import com.ytc.util.CheckImgUtil;
 import com.ytc.util.Md5Util;
 import com.ytc.util.PageUtil;
-import org.apache.zookeeper.data.Id;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -290,6 +288,8 @@ public class SuserController {
         return "suser/reg";
     }
 
+
+
     @RequestMapping("calculation")
     public String calculation(Model model,HttpServletRequest request){
         Suser suser = (Suser) request.getSession().getAttribute("suser");
@@ -304,5 +304,4 @@ public class SuserController {
     public void upf(Freightcalculation freightcalculation){
         freightcalculationService.upf(freightcalculation);
     }
-
 }
