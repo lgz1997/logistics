@@ -35,7 +35,7 @@
             <td th:if="${o.accept.acceptstatus==2}">拒绝受理,原因:<a th:text="${o.accept.noacceptwhy}"></a></td>
 
             <td th:if="${o.freight.freightstatus==0}">
-                <a th:if="${o.orderstatus==1}"><input type="button" value="支付" th:onclick="'javascript:zhifu('+${o.orderid}+')'"><input type="button" value="退单" th:onclick="'javascript:tuidan('+${o.orderid}+')'"></a>
+                <a th:if="${o.orderstatus==1}"><input type="button" value="支付" th:onclick="zhifu([[${o.orderid}]])"><input type="button" value="退单" th:onclick="'javascript:tuidan('+${o.orderid}+')'"></a>
                 <a th:if="${o.orderstatus==2}"><input type="button" value="退单审核中"  disabled="disabled"></a><a th:if="${o.orderstatus==3}"><input type="button" value="退单成功" disabled="disabled"></a></td>
 
             <td th:if="${o.accept.acceptstatus==0 and o.freight.freightstatus==1}">
@@ -57,6 +57,13 @@
 
 </body>
 <script>
+
+
+    function zhifu1(orderid){
+        var price = $("#"+orderid).val();
+        parent.location.href="/cuser/goAlipay?price="+price;
+    }
+
     function shouHuo(orderid) {
         $.ajax({
             url:"/cuser/shouHuo",
@@ -83,6 +90,7 @@
                 alert("支付失败");
             }
         })
+        window.open("http://localhost:8080/cuser/goAlipay?price="+price);
     }
 
     function tuidan(orderid) {
